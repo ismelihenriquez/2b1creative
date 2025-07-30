@@ -50,13 +50,10 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
-        .card-hover-effect {
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-        }
-        .card-hover-effect:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 245, 212, 0.1), 0 10px 10px -5px rgba(0, 245, 212, 0.04);
+
+        /* Video Modal Styles */
+        #video-modal {
+            transition: opacity 0.3s ease;
         }
     </style>
 </head>
@@ -127,10 +124,10 @@
             <div class="max-w-6xl mx-auto px-4 sm:px-6">
                  <div class="relative flex justify-center items-center floating">
                     <div class="w-full h-auto bg-gray-800/50 backdrop-blur-sm rounded-2xl p-2 border border-gray-700/50 shadow-2xl shadow-cyan-500/10">
-                        <img src="https://storage.googleapis.com/generative-ai-downloads/images/2b1_creative_composite.png" 
+                        <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/Ismeli%20Henriquez%20Influencer%20Portfolio%20(1).png?raw=true" 
                              alt="Composite image showing a CRM dashboard on a laptop and a coffee shop mobile app on a phone"
                              class="rounded-xl"
-                             onerror="https://github.com/ismelihenriquez/2b1creative/blob/main/Ismeli%20Henriquez%20Influencer%20Portfolio%20(1).png?raw=true">
+                             onerror="this.onerror=null;this.src='https://placehold.co/1024x576/0c0c0c/FFFFFF?text=Image+Not+Found';">
                     </div>
                 </div>
             </div>
@@ -144,35 +141,35 @@
                     <p class="text-lg text-gray-400 mt-2">We merge technology and creativity to fuel your growth.</p>
                 </div>
 
-                <div class="space-y-16">
+                <div class="space-y-24">
                     <!-- Service 1: Web & App Development -->
                     <div class="grid md:grid-cols-2 gap-12 items-center">
                         <div class="text-center md:text-left">
-                            <h3 class="text-3xl font-bold text-white mb-3">Web & App Development</h3>
+                            <h3 class="text-3xl font-bold text-white mb-4">Web & App Development</h3>
                             <p class="text-gray-400 mb-6">We turn complex problems into beautiful, intuitive digital solutions. From sleek marketing sites to robust enterprise applications, we build products that perform.</p>
-                            <ul class="space-y-2 text-gray-300">
-                                <li class="flex items-start"><span class="text-brand-turquoise mr-2 mt-1">&#10003;</span> High-performance, scalable websites and mobile apps.</li>
-                                <li class="flex items-start"><span class="text-brand-turquoise mr-2 mt-1">&#10003;</span> Intuitive UI/UX design that delights users.</li>
-                                <li class="flex items-start"><span class="text-brand-turquoise mr-2 mt-1">&#10003;</span> E-commerce solutions and payment gateway integrations.</li>
+                            <ul class="space-y-3 text-gray-300 text-left">
+                                <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-white">Full-Stack Development:</strong> High-performance, scalable websites and mobile apps.</div></li>
+                                <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-white">UI/UX Design:</strong> Intuitive interfaces that delight users and drive engagement.</div></li>
+                                <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-white">E-commerce:</strong> Custom online stores and payment gateway integrations.</div></li>
                             </ul>
                         </div>
-                        <div class="flex items-center justify-center bg-gray-800/50 rounded-2xl p-8 h-64">
-                            <svg class="w-24 h-24 text-brand-turquoise" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <div class="flex items-center justify-center">
+                            <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/Screenshot%202025-07-30%20094615.png?raw=true" alt="Web and App Development Showcase" class="rounded-2xl shadow-2xl">
                         </div>
                     </div>
 
                     <!-- Service 2: Custom CRM & Automations -->
                     <div class="grid md:grid-cols-2 gap-12 items-center">
-                        <div class="flex items-center justify-center bg-gray-800/50 rounded-2xl p-8 h-64 md:order-1">
-                             <svg class="w-24 h-24 text-brand-turquoise" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <div class="flex items-center justify-center md:order-1">
+                             <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/dashboard.png?raw=true" alt="CRM and Automation Showcase" class="rounded-2xl shadow-2xl">
                         </div>
                         <div class="text-center md:text-left">
-                            <h3 class="text-3xl font-bold text-white mb-3">Custom CRM & Automations</h3>
+                            <h3 class="text-3xl font-bold text-white mb-4">Custom CRM & Automations</h3>
                             <p class="text-gray-400 mb-6">Stop fighting with off-the-shelf software. We build bespoke CRMs and workflow automations that are tailored to your exact business processes.</p>
-                             <ul class="space-y-2 text-gray-300">
-                                <li class="flex items-start"><span class="text-brand-turquoise mr-2 mt-1">&#10003;</span> Systems built for your unique sales and operational workflow.</li>
-                                <li class="flex items-start"><span class="text-brand-turquoise mr-2 mt-1">&#10003;</span> AI-powered integrations to boost efficiency.</li>
-                                <li class="flex items-start"><span class="text-brand-turquoise mr-2 mt-1">&#10003;</span> Streamline data management and customer relationships.</li>
+                             <ul class="space-y-3 text-gray-300 text-left">
+                                <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-white">Bespoke Systems:</strong> CRMs built for your unique sales and operational workflow.</div></li>
+                                <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-white">AI Integration:</strong> Leverage artificial intelligence to boost efficiency and find insights.</div></li>
+                                <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-white">Process Streamlining:</strong> Automate repetitive tasks and data management.</div></li>
                             </ul>
                         </div>
                     </div>
@@ -180,16 +177,16 @@
                     <!-- Service 3: Digital Marketing & Strategy -->
                     <div class="grid md:grid-cols-2 gap-12 items-center">
                         <div class="text-center md:text-left">
-                            <h3 class="text-3xl font-bold text-white mb-3">Digital Marketing & Strategy</h3>
+                            <h3 class="text-3xl font-bold text-white mb-4">Digital Marketing & Strategy</h3>
                             <p class="text-gray-400 mb-6">Great products deserve to be seen. We create and execute data-driven marketing strategies that build your brand and drive measurable results.</p>
-                             <ul class="space-y-2 text-gray-300">
-                                <li class="flex items-start"><span class="text-brand-turquoise mr-2 mt-1">&#10003;</span> Comprehensive marketing strategy and campaign execution.</li>
-                                <li class="flex items-start"><span class="text-brand-turquoise mr-2 mt-1">&#10003;</span> Content creation, social media management, and email marketing.</li>
-                                <li class="flex items-start"><span class="text-brand-turquoise mr-2 mt-1">&#10003;</span> Performance tracking and growth-focused analytics.</li>
+                             <ul class="space-y-3 text-gray-300 text-left">
+                                <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-white">Growth Strategy:</strong> Comprehensive marketing plans and campaign execution.</div></li>
+                                <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-white">Content & Social:</strong> Engaging content creation and social media management.</div></li>
+                                <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-white">Analytics:</strong> Performance tracking and growth-focused reporting.</div></li>
                             </ul>
                         </div>
-                        <div class="flex items-center justify-center bg-gray-800/50 rounded-2xl p-8 h-64">
-                            <svg class="w-24 h-24 text-brand-turquoise" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        <div class="flex items-center justify-center">
+                           <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/content.png?raw=true" alt="Marketing and Strategy Showcase" class="rounded-2xl shadow-2xl">
                         </div>
                     </div>
                 </div>
@@ -206,7 +203,7 @@
                 
                 <div class="space-y-20">
                     <!-- Project 1: ROasted -->
-                    <div class="bg-gray-800/50 rounded-2xl overflow-hidden md:flex flex-row-reverse items-center gap-8 p-8">
+                    <div class="bg-gray-800/50 rounded-2xl overflow-hidden md:flex items-center gap-12 p-8">
                         <div class="md:w-1/2 text-white">
                             <h3 class="text-3xl font-bold mb-2">ROasted Coffee & Workspaces</h3>
                             <p class="font-semibold text-brand-turquoise mb-4">Mobile App Development & Automation</p>
@@ -237,17 +234,17 @@
                         </div>
                         <div class="md:w-1/2 mt-8 md:mt-0">
                             <div class="grid grid-cols-2 gap-4">
-                                <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/coffee1.png?raw=true" alt="ROasted app screenshot 1" class="rounded-lg shadow-lg">
-                                <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/coffee2.png?raw=true" alt="ROasted app screenshot 2" class="rounded-lg shadow-lg transform translate-y-4">
-                                <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/coffee3.png?raw=true" alt="ROasted app screenshot 3" class="rounded-lg shadow-lg">
-                                <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/coffee4.png?raw=true" alt="ROasted app screenshot 4" class="rounded-lg shadow-lg transform translate-y-4">
+                                <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/coffee2.png?raw=true" alt="ROasted app screenshot 2" class="rounded-lg shadow-lg">
+                                <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/coffee3.png?raw=true" alt="ROasted app screenshot 3" class="rounded-lg shadow-lg transform translate-y-4">
+                                <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/coffee4.png?raw=true" alt="ROasted app screenshot 4" class="rounded-lg shadow-lg">
+                                <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/coffee1.png?raw=true" alt="ROasted app screenshot 1" class="rounded-lg shadow-lg transform translate-y-4">
                             </div>
                         </div>
                     </div>
 
                     <!-- Project 2: Construction CRM -->
-                    <div class="bg-gray-800/50 rounded-2xl overflow-hidden md:flex items-center gap-8 p-8">
-                        <div class="md:w-1/2 text-white">
+                    <div class="bg-gray-800/50 rounded-2xl overflow-hidden md:flex items-center gap-12 p-8">
+                        <div class="md:w-1/2 text-white md:order-2">
                             <h3 class="text-3xl font-bold mb-2">Construction PM CRM</h3>
                             <p class="font-semibold text-brand-turquoise mb-4">Custom Software Development</p>
                             
@@ -258,7 +255,7 @@
                             
                             <div class="mb-6">
                                 <h4 class="font-bold text-lg mb-2">The Solution</h4>
-                                <p class="text-gray-400">We built a powerful, all-in-one CRM, custom-tailored to their workflow. The platform centralizes project management, budgets, client data, file sharing, and invoicing, turning chaos into clarity. Each CRM is built to the client's unique needs, from simple dashboards to robust, multi-faceted systems.</p>
+                                <p class="text-gray-400">We built a powerful, all-in-one CRM, custom-tailored to their workflow. The platform centralizes project management, budgets, client data, file sharing, and invoicing, turning chaos into clarity.</p>
                             </div>
 
                             <div>
@@ -266,16 +263,24 @@
                                 <ul class="list-disc list-inside text-gray-400 space-y-1">
                                     <li><span class="font-semibold text-white">Centralized Control:</span> One source of truth for all project data.</li>
                                     <li><span class="font-semibold text-white">Streamlined Workflows:</span> Faster generation of estimates and invoices.</li>
-                                    <li><span class="font-semibold text-white">Enhanced Client Communication:</span> Real-time progress sharing and file access.</li>
+                                    <li><span class="font-semibold text-white">Enhanced Client Communication:</span> Real-time progress sharing.</li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="md:w-1/2 mt-8 md:mt-0">
-                            <div class="rounded-lg shadow-lg overflow-hidden">
-                                <video class="w-full" poster="https://placehold.co/1920x1080/1a1a1a/00f5d4?text=CRM+Walkthrough+Video" playsinline autoplay muted loop>
-                                    <source src="https://github.com/ismelihenriquez/2b1creative/raw/refs/heads/main/crm1.mp4" type="video/mp4">
+                        <div class="md:w-1/2 mt-8 md:mt-0 md:order-1 relative group">
+                            <div id="video-container" class="rounded-lg shadow-2xl overflow-hidden cursor-pointer">
+                                <video class="w-full h-auto" poster="https://placehold.co/1920x1080/1a1a1a/00f5d4?text=CRM+Walkthrough+Video" playsinline muted loop>
+                                    <source src="https://raw.githubusercontent.com/ismelihenriquez/2b1creative/main/crm1.mp4" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
+                                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                    <button id="play-button" class="text-white bg-brand-turquoise bg-opacity-80 rounded-full p-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+                                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="sr-only">Play Video</span>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -320,6 +325,18 @@
 
     </main>
 
+    <!-- Video Modal -->
+    <div id="video-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 z-50 items-center justify-center p-4">
+        <div class="relative bg-black rounded-lg w-full max-w-4xl">
+            <button id="close-modal" class="absolute -top-4 -right-4 text-white bg-brand-turquoise rounded-full h-10 w-10 flex items-center justify-center z-10">&times;</button>
+            <video id="modal-video" class="w-full h-auto rounded-lg" controls>
+                <source src="https://raw.githubusercontent.com/ismelihenriquez/2b1creative/main/crm1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+
     <!-- Footer -->
     <footer class="bg-brand-dark py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
@@ -347,9 +364,36 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('section > div').forEach(el => {
+        document.querySelectorAll('section > div, .pillar-hover-effect').forEach(el => {
             observer.observe(el);
         });
+
+        // Video Modal Logic
+        const videoContainer = document.getElementById('video-container');
+        const modal = document.getElementById('video-modal');
+        const modalVideo = document.getElementById('modal-video');
+        const closeModal = document.getElementById('close-modal');
+
+        videoContainer.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            modalVideo.play();
+        });
+
+        const closeVideoModal = () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+        }
+
+        closeModal.addEventListener('click', closeVideoModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeVideoModal();
+            }
+        });
+
     </script>
 </body>
 </html>
