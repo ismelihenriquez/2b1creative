@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2B1 Creative - Growth Agency</title>
+    <link rel="icon" href="https://github.com/ismelihenriquez/2b1creative/blob/main/2B1-logo.png?raw=true" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,7 +12,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
+            background-color: #0c0c0c;
             color: #1a202c;
         }
         /* Custom turquoise color */
@@ -50,11 +51,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-
-        /* Video Modal Styles */
-        #video-modal {
-            transition: opacity 0.3s ease;
-        }
     </style>
 </head>
 <body class="bg-brand-dark">
@@ -65,19 +61,38 @@
             <div class="flex items-center justify-between h-20">
                 <!-- Site branding -->
                 <div class="flex-shrink-0 mr-4">
-                    <a href="#" class="text-2xl font-extrabold text-white">2B1 <span class="text-brand-turquoise">Creative</span></a>
+                    <a href="index.html" class="text-2xl font-extrabold text-white">2B1 <span class="text-brand-turquoise">Creative</span></a>
                 </div>
 
-                <!-- Site navigation -->
+                <!-- Desktop Navigation -->
                 <nav class="hidden md:flex md:grow">
                     <ul class="flex grow justify-end flex-wrap items-center">
                         <li><a href="#services" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Services</a></li>
-                        <li><a href="#work" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Our Work</a></li>
+                        <li><a href="work.html" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Our Work</a></li>
                         <li><a href="#contact" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Contact</a></li>
                         <li><a href="#contact" class="btn text-brand-dark bg-brand-turquoise hover:bg-white ml-4 rounded-md px-5 py-2 transition duration-300">Get a Quote</a></li>
                     </ul>
                 </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
             </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark bg-opacity-95 backdrop-blur-sm">
+            <ul class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <li><a href="#services" class="mobile-menu-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Services</a></li>
+                <li><a href="work.html" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Our Work</a></li>
+                <li><a href="#contact" class="mobile-menu-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a></li>
+                <li><a href="#contact" class="mobile-menu-link btn text-brand-dark bg-brand-turquoise hover:bg-white mt-4 block w-1/2 mx-auto py-2 rounded-md">Get a Quote</a></li>
+            </ul>
         </div>
     </header>
 
@@ -85,24 +100,6 @@
 
         <!-- Hero Section -->
         <section class="relative pt-32 pb-20 md:pt-40 md:pb-24">
-            <!-- Background decoration -->
-            <div class="absolute inset-0 bg-brand-dark pointer-events-none" aria-hidden="true"></div>
-            <div class="absolute left-1/2 transform -translate-x-1/2 bottom-0 pointer-events-none" aria-hidden="true">
-                <svg width="1360" height="578" viewBox="0 0 1360 578" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="illustration-01">
-                            <stop stop-color="#00f5d4" offset="0%"></stop>
-                            <stop stop-color="#00bbf9" offset="77.402%"></stop>
-                            <stop stop-color="#008ac5" offset="100%"></stop>
-                        </linearGradient>
-                    </defs>
-                    <g fill="url(#illustration-01)" fill-rule="evenodd">
-                        <circle cx="1232" cy="128" r="128"></circle>
-                        <circle cx="155" cy="443" r="64"></circle>
-                    </g>
-                </svg>
-            </div>
-            
             <div class="max-w-7xl mx-auto px-4 sm:px-6">
                 <div class="text-center pb-12 md:pb-16">
                     <h1 class="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 text-white" data-aos="zoom-y-out">
@@ -193,99 +190,12 @@
             </div>
         </section>
 
-        <!-- "Our Work" Section -->
-        <section id="work" class="py-20 bg-brand-dark">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-extrabold text-white">Our Work</h2>
-                    <p class="text-lg text-gray-400 mt-2">We're proud of what we've built. Here's a selection.</p>
-                </div>
-                
-                <div class="space-y-20">
-                    <!-- Project 1: ROasted -->
-                    <div class="bg-gray-800/50 rounded-2xl overflow-hidden md:flex items-center gap-12 p-8">
-                        <div class="md:w-1/2 text-white">
-                            <h3 class="text-3xl font-bold mb-2">ROasted Coffee & Workspaces</h3>
-                            <p class="font-semibold text-brand-turquoise mb-4">Mobile App Development & Automation</p>
-                            
-                            <div class="mb-6">
-                                <h4 class="font-bold text-lg mb-2">The Challenge</h4>
-                                <p class="text-gray-400">ROasted was missing out on workspace bookings and revenue because their baristas, busy with coffee orders, couldn't handle phone reservations efficiently.</p>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <h4 class="font-bold text-lg mb-2">The Solution</h4>
-                                <p class="text-gray-400">We developed a seamless mobile app allowing customers to order coffee, book workspaces, manage rewards, and even unlock room doors directly from their phone. This fully automated the booking and check-in process, freeing up staff entirely.</p>
-                            </div>
-
-                            <div>
-                                <h4 class="font-bold text-lg mb-2">The Results</h4>
-                                <div class="flex items-center gap-6">
-                                    <div class="text-center">
-                                        <p class="text-4xl font-extrabold text-brand-turquoise">400%</p>
-                                        <p class="text-gray-400">Increase in Bookings</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="text-4xl font-extrabold text-brand-turquoise">Up</p>
-                                        <p class="text-gray-400">Increase in Coffee Sales</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="md:w-1/2 mt-8 md:mt-0">
-                            <div class="grid grid-cols-2 gap-4">
-                                <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/coffee2.png?raw=true" alt="ROasted app screenshot 2" class="rounded-lg shadow-lg">
-                                <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/coffee3.png?raw=true" alt="ROasted app screenshot 3" class="rounded-lg shadow-lg transform translate-y-4">
-                                <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/coffee4.png?raw=true" alt="ROasted app screenshot 4" class="rounded-lg shadow-lg">
-                                <img src="https://github.com/ismelihenriquez/2b1creative/blob/main/coffee1.png?raw=true" alt="ROasted app screenshot 1" class="rounded-lg shadow-lg transform translate-y-4">
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2: Construction CRM -->
-                    <div class="bg-gray-800/50 rounded-2xl overflow-hidden md:flex items-center gap-12 p-8">
-                        <div class="md:w-1/2 text-white md:order-2">
-                            <h3 class="text-3xl font-bold mb-2">Construction PM CRM</h3>
-                            <p class="font-semibold text-brand-turquoise mb-4">Custom Software Development</p>
-                            
-                            <div class="mb-6">
-                                <h4 class="font-bold text-lg mb-2">The Challenge</h4>
-                                <p class="text-gray-400">Construction project managers were juggling multiple projects using disconnected spreadsheets, emails, and file systems, leading to errors and slowing down client communication.</p>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <h4 class="font-bold text-lg mb-2">The Solution</h4>
-                                <p class="text-gray-400">We built a powerful, all-in-one CRM, custom-tailored to their workflow. The platform centralizes project management, budgets, client data, file sharing, and invoicing, turning chaos into clarity.</p>
-                            </div>
-
-                            <div>
-                                <h4 class="font-bold text-lg mb-2">The Results</h4>
-                                <ul class="list-disc list-inside text-gray-400 space-y-1">
-                                    <li><span class="font-semibold text-white">Centralized Control:</span> One source of truth for all project data.</li>
-                                    <li><span class="font-semibold text-white">Streamlined Workflows:</span> Faster generation of estimates and invoices.</li>
-                                    <li><span class="font-semibold text-white">Enhanced Client Communication:</span> Real-time progress sharing.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="md:w-1/2 mt-8 md:mt-0 md:order-1 relative group">
-                            <div id="video-container" class="rounded-lg shadow-2xl overflow-hidden cursor-pointer">
-                                <video class="w-full h-auto" poster="https://placehold.co/1920x1080/1a1a1a/00f5d4?text=CRM+Walkthrough+Video" playsinline muted loop>
-                                    <source src="https://raw.githubusercontent.com/ismelihenriquez/2b1creative/main/crm1.mp4" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <button id="play-button" class="text-white bg-brand-turquoise bg-opacity-80 rounded-full p-4">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
-                                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
-                                        </svg>
-                                        <span class="sr-only">Play Video</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+        <!-- CTA to Work Page -->
+        <section class="py-20 bg-brand-dark">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+                <h2 class="text-3xl font-extrabold text-white mb-4">See Our Results</h2>
+                <p class="text-lg text-gray-400 mb-8">We're proud of the work we do and the results we deliver.</p>
+                <a href="work.html" class="btn text-brand-dark bg-brand-turquoise hover:bg-white rounded-lg py-3 px-8 shadow-lg transition duration-300 text-lg font-semibold">View Our Work</a>
             </div>
         </section>
 
@@ -325,18 +235,6 @@
 
     </main>
 
-    <!-- Video Modal -->
-    <div id="video-modal" class="hidden fixed inset-0 bg-black bg-opacity-80 z-50 items-center justify-center p-4">
-        <div class="relative bg-black rounded-lg w-full max-w-4xl">
-            <button id="close-modal" class="absolute -top-4 -right-4 text-white bg-brand-turquoise rounded-full h-10 w-10 flex items-center justify-center z-10">&times;</button>
-            <video id="modal-video" class="w-full h-auto rounded-lg" controls>
-                <source src="https://raw.githubusercontent.com/ismelihenriquez/2b1creative/main/crm1.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
-
-
     <!-- Footer -->
     <footer class="bg-brand-dark py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
@@ -345,8 +243,8 @@
     </footer>
 
     <script>
-        // Simple scroll-based header transparency
-        const header = document.querySelector('#header');
+        // Header scroll behavior
+        const header = document.getElementById('header');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 10) {
                 header.classList.add('bg-brand-dark', 'shadow-lg');
@@ -355,7 +253,22 @@
             }
         });
 
-        // Simple fade-in animation on scroll
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Fade-in animation on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -364,36 +277,9 @@
             });
         }, { threshold: 0.1 });
 
-        document.querySelectorAll('section > div, .pillar-hover-effect').forEach(el => {
+        document.querySelectorAll('section > div').forEach(el => {
             observer.observe(el);
         });
-
-        // Video Modal Logic
-        const videoContainer = document.getElementById('video-container');
-        const modal = document.getElementById('video-modal');
-        const modalVideo = document.getElementById('modal-video');
-        const closeModal = document.getElementById('close-modal');
-
-        videoContainer.addEventListener('click', () => {
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            modalVideo.play();
-        });
-
-        const closeVideoModal = () => {
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            modalVideo.pause();
-            modalVideo.currentTime = 0;
-        }
-
-        closeModal.addEventListener('click', closeVideoModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeVideoModal();
-            }
-        });
-
     </script>
 </body>
 </html>
