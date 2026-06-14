@@ -1,462 +1,345 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth select-none">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2B1 Creative - Production Studio & Tech Agency</title>
+    <title>2B1 Creative - An Interactive Motion Experience</title>
     <link rel="icon" href="https://github.com/ismelihenriquez/2b1creative/blob/main/2B1-logo.png?raw=true" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0c0c0c;
-            color: #1a202c;
+            background-color: #060a12;
+            color: #ffffff;
             overflow-x: hidden;
         }
+        h1, h2, h3, .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
         .text-brand-turquoise { color: #00f5d4; }
         .bg-brand-turquoise { background-color: #00f5d4; }
         .border-brand-turquoise { border-color: #00f5d4; }
-        .text-brand-cyan { color: #00bbf9; }
+        .text-brand-magenta { color: #ff007f; }
 
-        .bg-brand-dark { background-color: #0c0c0c; }
-        .bg-brand-light-dark { background-color: #111111; }
-        .bg-console-panel { background-color: #0b131e; }
-        .bg-console-box { background-color: #060a12; }
-
-        /* HERO APERTURE SPOTLIGHT EFFECTS */
-        .hero-container {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background-color: #050505;
-        }
-        .bg-video-muted {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: translate(-50%, -50%);
-            opacity: 0.15;
-            filter: grayscale(100%);
-            z-index: 1;
-        }
-        #spotlight-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        /* MATRIX CONFIGURATIONS */
-        .matrix-switch:checked + .switch-bg {
-            background-color: rgba(0, 245, 212, 0.08);
-            border-color: #00f5d4;
-            box-shadow: 0 0 15px rgba(0, 245, 212, 0.25);
-        }
-        .matrix-switch:checked + .switch-bg .switch-dot {
-            transform: translateX(1.25rem);
-            background-color: #00f5d4;
-            box-shadow: 0 0 8px #00f5d4;
-        }
-        .matrix-switch:checked + .switch-bg .switch-text {
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        .glow-line {
-            stroke-dasharray: 6;
-            animation: flowDash 4s linear infinite;
-        }
-        @keyframes flowDash {
-            to { stroke-dashoffset: -20; }
+        /* Smooth Motion State Eras */
+        .page-state {
+            transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
         
-        /* Smooth state transitions */
-        .transition-all-300 {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Floating animations for our cupcake placeholders */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+        .animate-cupcake {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Tic Tac Toe Grid Styles */
+        .ttt-cell {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.2s ease;
+        }
+        .ttt-cell:hover {
+            background: rgba(255, 255, 255, 0.07);
         }
     </style>
 </head>
-<body class="bg-brand-dark">
+<body>
 
-    <header class="fixed w-full z-50 transition-all duration-300 ease-in-out" id="header">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex-shrink-0 mr-4">
-                    <a href="index.html" class="text-2xl font-extrabold text-white">2B1 <span class="text-brand-turquoise">Creative</span></a>
-                </div>
-                <nav class="hidden md:flex md:grow">
-                    <ul class="flex grow justify-end flex-wrap items-center">
-                        <li><a href="index.html" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150">Home</a></li>
-                        <li><a href="#split-section" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150">Identity</a></li>
-                        <li><a href="#matrix-section" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150">Matrix Console</a></li>
-                        <li><a href="work/" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150">Our Work</a></li>
-                        <li><a href="#contact" class="btn text-brand-dark bg-brand-turquoise hover:bg-white ml-4 rounded-md px-5 py-2 transition duration-300 font-semibold">Get a Quote</a></li>
-                    </ul>
-                </nav>
-            </div>
+    <header class="fixed w-full z-50 bg-opacity-90 backdrop-blur-md border-b border-white/5 py-4">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <a href="#" onclick="resetExperience()" class="text-2xl font-extrabold tracking-tight">2B1 <span class="text-brand-turquoise">Creative</span></a>
+            <button onclick="scrollToContact()" class="text-xs font-mono bg-white text-black px-4 py-2 rounded-full font-bold hover:bg-brand-turquoise transition duration-300">LET'S TALK</button>
         </div>
     </header>
 
-    <main class="flex-grow">
+    <section id="experience-hero" class="relative w-full min-h-screen flex flex-col justify-between pt-24 pb-12 overflow-hidden">
+        
+        <div class="text-center max-w-2xl mx-auto px-4 z-10 mt-6">
+            <span class="text-xs font-mono tracking-widest text-gray-500 uppercase">// INTERACTIVE PORTAL</span>
+            <h1 id="main-headline" class="text-4xl md:text-6xl font-extrabold tracking-tight mt-2 transition-all duration-500"> What is your business hungry for?</h1>
+            <p class="text-sm text-gray-400 mt-4">Select a pathway below to view how we structure our production storytelling or digital workflows.</p>
+        </div>
 
-        <section class="hero-container flex items-center justify-center">
-            <video class="bg-video-muted" autoplay loop muted playsinline src="https://assets.mixkit.co/videos/preview/mixkit-working-with-a-cinematic-video-camera-43242-large.mp4"></video>
+        <div class="grid md:grid-cols-2 gap-8 max-w-6xl w-full mx-auto px-6 items-center flex-grow my-8 relative">
             
-            <canvas id="spotlight-canvas"></canvas>
+            <div id="side-creative" class="page-state flex flex-col items-center justify-center text-center cursor-pointer group p-6 rounded-3xl hover:bg-white/5" onclick="selectTrack('creative')">
+                <div class="w-48 h-48 md:w-64 md:h-64 bg-gradient-to-tr from-pink-500 to-amber-400 rounded-full flex items-center justify-center text-6xl shadow-2xl shadow-pink-500/20 animate-cupcake">
+                    🧁
+                </div>
+                <h3 class="text-2xl font-bold mt-6 group-hover:text-brand-turquoise transition">Creative Marketing</h3>
+                <p class="text-xs text-gray-400 max-w-xs mt-2 font-mono">[ SOCIAL ADS • SCRIPTED SKETCHES • EMAIL DESIGN ]</p>
+            </div>
 
-            <div class="hero-content text-center max-w-7xl mx-auto px-4 sm:px-6 relative">
-                <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter mb-6 text-white">
-                    Stories that <span class="gradient-text">Captivate</span>.<br> Systems that <span class="text-white border-b-4 border-brand-turquoise">Scale</span>.
-                </h1>
-                <div class="max-w-2xl mx-auto">
-                    <p class="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed font-light">
-                        We are a full-service production studio powered by an elite creative engineering department. Move your mouse across the scene to focus our aperture.
-                    </p>
-                    <div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
-                        <a href="#matrix-section" class="btn text-brand-dark bg-brand-turquoise hover:bg-opacity-90 font-bold w-full sm:w-auto rounded-lg py-4 px-8 shadow-lg transition duration-300">Design Your Blueprint</a>
-                        <a href="#split-section" class="btn text-white bg-transparent border border-gray-700 hover:bg-gray-900 w-full sm:w-auto rounded-lg py-4 px-8 transition duration-300">Our Paradigm</a>
-                    </div>
+            <div id="side-tech" class="page-state flex flex-col items-center justify-center text-center cursor-pointer group p-6 rounded-3xl hover:bg-white/5" onclick="selectTrack('tech')">
+                <div class="w-48 h-48 md:w-64 md:h-64 bg-gradient-to-br from-cyan-500 to-indigo-600 rounded-full flex items-center justify-center text-6xl shadow-2xl shadow-cyan-500/20 animate-cupcake" style="animation-delay: -2s;">
+                    🤖
+                </div>
+                <h3 class="text-2xl font-bold mt-6 group-hover:text-brand-turquoise transition">Tech Solutions</h3>
+                <p class="text-xs text-gray-400 max-w-xs mt-2 font-mono">[ BESPOKE CRMS • MOBILE APPS • AI AUTOMATIONS ]</p>
+            </div>
+
+        </div>
+
+        <div class="flex justify-center gap-4 z-10 px-4">
+            <button onclick="selectTrack('creative')" class="px-5 py-2.5 bg-neutral-900 border border-white/10 rounded-full text-xs font-mono uppercase tracking-wider hover:border-brand-turquoise transition">Studio Track</button>
+            <button onclick="selectTrack('both')" class="px-6 py-2.5 bg-brand-turquoise text-black rounded-full text-xs font-mono font-bold uppercase tracking-wider hover:bg-white transition shadow-lg shadow-brand-turquoise/20">Give Me Both</button>
+            <button onclick="selectTrack('tech')" class="px-5 py-2.5 bg-neutral-900 border border-white/10 rounded-full text-xs font-mono uppercase tracking-wider hover:border-brand-turquoise transition">The Lab Track</button>
+        </div>
+    </section>
+
+    <section id="services-reveal-section" class="py-24 bg-neutral-950 border-t border-b border-white/5 hidden opacity-0 transition-all duration-700">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-12">
+                <h2 id="reveal-title" class="text-3xl font-bold tracking-tight">Your Custom Pipeline Blueprint</h2>
+                <button onclick="resetExperience()" class="text-xs font-mono text-gray-500 hover:text-white">&larr; CHANGE SELECTION</button>
+            </div>
+
+            <div id="dynamic-cards-container" class="grid md:grid-cols-3 gap-6">
+                </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-neutral-900/60 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto px-6 grid md:grid-cols-12 gap-8 items-center">
+            
+            <div class="md:col-span-5 space-y-4">
+                <span class="text-xs font-mono text-brand-turquoise tracking-widest uppercase">// MINI-GAME BREAK</span>
+                <h2 class="text-3xl font-extrabold tracking-tight">Tic-Tac-Creative</h2>
+                <p id="game-status-text" class="text-sm text-gray-400 leading-relaxed">
+                    Trying to manually align creative marketing assets with engineering pipelines on your own? It usually ends in a gridlock tie. Play our console match to unlock your strategy sequence.
+                </p>
+                <div class="flex items-center space-x-4 pt-2 font-mono text-xs text-gray-500">
+                    <div>YOU: <span class="text-brand-turquoise font-bold">🧁 (Studio)</span></div>
+                    <div>COMP: <span class="text-brand-magenta font-bold">🤖 (Lab)</span></div>
                 </div>
             </div>
-        </section>
 
-        <section id="split-section" class="py-24 bg-brand-dark border-t border-b border-gray-900 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-0 border border-gray-800 rounded-3xl overflow-hidden shadow-2xl">
-                
-                <div class="bg-gradient-to-br from-gray-950 to-gray-900 p-8 md:p-16 border-b md:border-b-0 md:border-r border-gray-800 flex flex-col justify-between group hover:bg-gray-900/60 transition duration-300">
-                    <div>
-                        <span class="text-xs font-mono text-brand-turquoise tracking-widest uppercase">// THE CREATIVE ART</span>
-                        <h3 class="text-3xl md:text-4xl font-extrabold text-white mt-4 mb-6">The Studio</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                            We script high-converting comedic sketches, commercials, and visual storytelling assets. This isn't generic content—it's high-retention performance entertainment built to arrest attention on overloaded social feeds.
-                        </p>
-                    </div>
-                    <span class="text-xs font-mono text-gray-600 mt-8 group-hover:text-brand-turquoise transition duration-300">CINEMATOGRAPHY • DIRECTION • SCRIPTING →</span>
-                </div>
-
-                <div class="bg-gradient-to-bl from-gray-950 to-gray-900 p-8 md:p-16 flex flex-col justify-between group hover:bg-gray-900/60 transition duration-300">
-                    <div>
-                        <span class="text-xs font-mono text-brand-cyan tracking-widest uppercase">// THE INFRASTRUCTURE</span>
-                        <h3 class="text-3xl md:text-4xl font-extrabold text-white mt-4 mb-6">The Lab</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                            We engineer the backend power required to process attention into enterprise scale. From custom CRMs and full-stack mobile applications to deep AI-reasoning automations that strip operation lag entirely.
-                        </p>
-                    </div>
-                    <span class="text-xs font-mono text-gray-600 mt-8 group-hover:text-brand-cyan transition duration-300">AI WORKFLOWS • CRMS • APP DEVELOPMENT →</span>
-                </div>
-
-            </div>
-        </section>
-
-        <section id="matrix-section" class="py-24 bg-brand-light-dark">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">The Deployment Matrix</h2>
-                    <p class="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Toggle any combination of services. Our engine intelligently architectures them in precise structural order.</p>
-                </div>
-
-                <div class="bg-console-panel rounded-2xl border border-gray-800/80 shadow-2xl p-4 md:p-6 grid lg:grid-cols-12 gap-6 max-w-6xl mx-auto relative">
-                    
-                    <div class="lg:col-span-4 space-y-2 flex flex-col justify-center">
-                        <span class="text-[10px] font-mono tracking-widest text-brand-turquoise uppercase block mb-2">// BRAND IMPLEMENTATION VARIABLES</span>
-                        
-                        <label class="relative flex items-center cursor-pointer select-none">
-                            <input type="checkbox" id="param-app" class="sr-only matrix-switch" checked>
-                            <div class="switch-bg flex items-center justify-between w-full py-2.5 px-4 bg-gray-950/40 border border-gray-800 rounded-lg transition duration-200">
-                                <span class="switch-text font-mono text-xs text-gray-400 tracking-wide">[MOBILE APP DEV]</span>
-                                <div class="w-8 h-4 bg-gray-800 rounded-full p-0.5 transition duration-200 flex items-center"><div class="switch-dot w-3 h-3 bg-gray-500 rounded-full transition duration-200"></div></div>
-                            </div>
-                        </label>
-
-                        <label class="relative flex items-center cursor-pointer select-none">
-                            <input type="checkbox" id="param-webpage" class="sr-only matrix-switch">
-                            <div class="switch-bg flex items-center justify-between w-full py-2.5 px-4 bg-gray-950/40 border border-gray-800 rounded-lg transition duration-200">
-                                <span class="switch-text font-mono text-xs text-gray-400 tracking-wide">[CUSTOM WEBPAGE]</span>
-                                <div class="w-8 h-4 bg-gray-800 rounded-full p-0.5 transition duration-200 flex items-center"><div class="switch-dot w-3 h-3 bg-gray-500 rounded-full transition duration-200"></div></div>
-                            </div>
-                        </label>
-
-                        <label class="relative flex items-center cursor-pointer select-none">
-                            <input type="checkbox" id="param-software" class="sr-only matrix-switch">
-                            <div class="switch-bg flex items-center justify-between w-full py-2.5 px-4 bg-gray-950/40 border border-gray-800 rounded-lg transition duration-200">
-                                <span class="switch-text font-mono text-xs text-gray-400 tracking-wide">[SOFTWARE INTEGRATION]</span>
-                                <div class="w-8 h-4 bg-gray-800 rounded-full p-0.5 transition duration-200 flex items-center"><div class="switch-dot w-3 h-3 bg-gray-500 rounded-full transition duration-200"></div></div>
-                            </div>
-                        </label>
-
-                        <label class="relative flex items-center cursor-pointer select-none">
-                            <input type="checkbox" id="param-crm" class="sr-only matrix-switch" checked>
-                            <div class="switch-bg flex items-center justify-between w-full py-2.5 px-4 bg-gray-950/40 border border-gray-800 rounded-lg transition duration-200">
-                                <span class="switch-text font-mono text-xs text-gray-400 tracking-wide">[BESPOKE CRM]</span>
-                                <div class="w-8 h-4 bg-gray-800 rounded-full p-0.5 transition duration-200 flex items-center"><div class="switch-dot w-3 h-3 bg-gray-500 rounded-full transition duration-200"></div></div>
-                            </div>
-                        </label>
-
-                        <label class="relative flex items-center cursor-pointer select-none">
-                            <input type="checkbox" id="param-email" class="sr-only matrix-switch">
-                            <div class="switch-bg flex items-center justify-between w-full py-2.5 px-4 bg-gray-950/40 border border-gray-800 rounded-lg transition duration-200">
-                                <span class="switch-text font-mono text-xs text-gray-400 tracking-wide">[EMAIL AUTOMATION]</span>
-                                <div class="w-8 h-4 bg-gray-800 rounded-full p-0.5 transition duration-200 flex items-center"><div class="switch-dot w-3 h-3 bg-gray-500 rounded-full transition duration-200"></div></div>
-                            </div>
-                        </label>
-
-                        <label class="relative flex items-center cursor-pointer select-none">
-                            <input type="checkbox" id="param-ai" class="sr-only matrix-switch" checked>
-                            <div class="switch-bg flex items-center justify-between w-full py-2.5 px-4 bg-gray-950/40 border border-gray-800 rounded-lg transition duration-200">
-                                <span class="switch-text font-mono text-xs text-gray-400 tracking-wide">[AI INTEGRATION]</span>
-                                <div class="w-8 h-4 bg-gray-800 rounded-full p-0.5 transition duration-200 flex items-center"><div class="switch-dot w-3 h-3 bg-gray-500 rounded-full transition duration-200"></div></div>
-                            </div>
-                        </label>
-
-                        <label class="relative flex items-center cursor-pointer select-none">
-                            <input type="checkbox" id="param-commercial" class="sr-only matrix-switch">
-                            <div class="switch-bg flex items-center justify-between w-full py-2.5 px-4 bg-gray-950/40 border border-gray-800 rounded-lg transition duration-200">
-                                <span class="switch-text font-mono text-xs text-gray-400 tracking-wide">[CINEMATIC COMMERCIAL]</span>
-                                <div class="w-8 h-4 bg-gray-800 rounded-full p-0.5 transition duration-200 flex items-center"><div class="switch-dot w-3 h-3 bg-gray-500 rounded-full transition duration-200"></div></div>
-                            </div>
-                        </label>
-
-                        <label class="relative flex items-center cursor-pointer select-none">
-                            <input type="checkbox" id="param-sketch" class="sr-only matrix-switch" checked>
-                            <div class="switch-bg flex items-center justify-between w-full py-2.5 px-4 bg-gray-950/40 border border-gray-800 rounded-lg transition duration-200">
-                                <span class="switch-text font-mono text-xs text-gray-400 tracking-wide">[COMEDIC SKETCH]</span>
-                                <div class="w-8 h-4 bg-gray-800 rounded-full p-0.5 transition duration-200 flex items-center"><div class="switch-dot w-3 h-3 bg-gray-500 rounded-full transition duration-200"></div></div>
-                            </div>
-                        </label>
-
-                        <label class="relative flex items-center cursor-pointer select-none">
-                            <input type="checkbox" id="param-management" class="sr-only matrix-switch">
-                            <div class="switch-bg flex items-center justify-between w-full py-2.5 px-4 bg-gray-950/40 border border-gray-800 rounded-lg transition duration-200">
-                                <span class="switch-text font-mono text-xs text-gray-400 tracking-wide">[SOCIAL MANAGEMENT]</span>
-                                <div class="w-8 h-4 bg-gray-800 rounded-full p-0.5 transition duration-200 flex items-center"><div class="switch-dot w-3 h-3 bg-gray-500 rounded-full transition duration-200"></div></div>
-                            </div>
-                        </label>
-                    </div>
-                    
-                    <div class="lg:col-span-4 bg-console-box border border-gray-800 rounded-xl p-5 flex flex-col justify-between items-center min-h-[380px]">
-                        <div class="w-full flex items-center space-x-2 border-b border-gray-900 pb-3">
-                            <div class="w-2 h-2 rounded-full bg-brand-turquoise shadow-[0_0_8px_#00f5d4]"></div>
-                            <span class="font-mono text-[10px] tracking-wider text-gray-400 uppercase">CHRONOLOGICAL ROADMAP</span>
-                        </div>
-                        <div id="diagram-display-engine" class="w-full flex justify-center items-center flex-grow transition-all duration-300">
-                            </div>
-                    </div>
-
-                    <div class="lg:col-span-4 bg-console-box p-5 flex flex-col justify-between rounded-xl border border-gray-800">
-                        <div class="w-full">
-                            <div class="border-b border-gray-900 pb-2 mb-4">
-                                <span id="module-version-tag" class="font-mono text-[10px] text-gray-500 uppercase tracking-widest">DEPLOYMENT STRATEGY:</span>
-                            </div>
-                            <div id="text-bullet-brief" class="space-y-4 text-xs text-gray-300 max-h-[320px] overflow-y-auto pr-1">
-                                </div>
-                        </div>
-                        <div class="pt-4 border-t border-gray-900 mt-4">
-                            <button onclick="deployCurrentPlan()" class="w-full py-2.5 px-4 bg-brand-turquoise hover:bg-white text-brand-dark rounded-md text-xs font-mono font-bold tracking-wider transition duration-200 uppercase">
-                                Deploy This Architecture Plan &rarr;
-                            </button>
-                        </div>
-                    </div>
-
+            <div class="md:col-span-7 flex justify-center">
+                <div class="w-72 h-72 grid grid-cols-3 grid-rows-3 gap-2 relative bg-neutral-950 p-2 rounded-2xl border border-white/10 shadow-2xl">
+                    <button class="ttt-cell rounded-lg text-3xl flex items-center justify-center focus:outline-none" data-cell-index="0"></button>
+                    <button class="ttt-cell rounded-lg text-3xl flex items-center justify-center focus:outline-none" data-cell-index="1"></button>
+                    <button class="ttt-cell rounded-lg text-3xl flex items-center justify-center focus:outline-none" data-cell-index="2"></button>
+                    <button class="ttt-cell rounded-lg text-3xl flex items-center justify-center focus:outline-none" data-cell-index="3"></button>
+                    <button class="ttt-cell rounded-lg text-3xl flex items-center justify-center focus:outline-none" data-cell-index="4"></button>
+                    <button class="ttt-cell rounded-lg text-3xl flex items-center justify-center focus:outline-none" data-cell-index="5"></button>
+                    <button class="ttt-cell rounded-lg text-3xl flex items-center justify-center focus:outline-none" data-cell-index="6"></button>
+                    <button class="ttt-cell rounded-lg text-3xl flex items-center justify-center focus:outline-none" data-cell-index="7"></button>
+                    <button class="ttt-cell rounded-lg text-3xl flex items-center justify-center focus:outline-none" data-cell-index="8"></button>
                 </div>
             </div>
-        </section>
 
-        <section id="contact" class="py-20 bg-white">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6">
-                <div class="relative bg-gray-900 rounded-2xl shadow-2xl p-8 md:p-12">
-                    <div class="relative text-center">
-                        <h2 class="text-4xl font-extrabold text-white mb-4">Ready to Build Outside the Box?</h2>
-                        <p class="text-md text-gray-300 mb-8">Your configured matrix selection has been mapped directly to the design layout fields below.</p>
-                        
-                        <form action="https://formspree.io/f/YOUR_FORMSPREE_ID_HERE" method="POST" class="max-w-xl mx-auto text-left">
-                            <div class="space-y-4">
-                                <div>
-                                    <label class="block text-xs font-mono text-gray-400 mb-1 uppercase">Your Name</label>
-                                    <input type="text" name="name" class="w-full px-4 py-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-turquoise" required>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-mono text-gray-400 mb-1 uppercase">Your Email Address</label>
-                                    <input type="email" name="_replyto" class="w-full px-4 py-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-turquoise" required>
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-mono text-gray-400 mb-1 uppercase">Your Custom Matrix Build Blueprint & Project Scope</label>
-                                    <textarea id="form-project-brief" name="message" rows="8" class="w-full px-4 py-3 rounded-md bg-gray-800 text-white font-mono text-xs border border-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-turquoise" required></textarea>
-                                </div>
-                            </div>
-                            <button type="submit" class="btn text-brand-dark bg-brand-turquoise hover:bg-white w-full rounded-md px-8 py-3 font-bold transition duration-300 mt-6 uppercase tracking-wider text-sm">Lock in Discovery Session</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
+    </section>
 
-    </main>
-
-    <footer class="bg-brand-dark py-8 border-t border-gray-800 text-center text-xs text-gray-500">
-        <p>&copy; 2026 2B1 Creative. All rights reserved.</p>
-    </footer>
+    <section id="contact-form-section" class="py-24 bg-white text-black">
+        <div class="max-w-xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-extrabold tracking-tight mb-2">Claim Your Custom Plan</h2>
+            <p class="text-sm text-gray-600 mb-8">Your selections and game score have been recorded into the secure project overview transmission box below.</p>
+            
+            <form action="https://formspree.io/f/YOUR_FORMSPREE_ID_HERE" method="POST" class="text-left space-y-4">
+                <input type="text" name="name" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-black" required>
+                <input type="email" name="email" placeholder="Email Address" class="w-full px-4 py-3 rounded-lg bg-gray-100 border-none focus:ring-2 focus:ring-black" required>
+                <textarea id="briefcase-input" name="message" rows="6" class="w-full px-4 py-3 rounded-lg bg-gray-100 font-mono text-xs border-none focus:ring-2 focus:ring-black" required></textarea>
+                <button type="submit" class="w-full py-3 bg-black hover:bg-brand-turquoise text-white hover:text-black font-bold rounded-lg transition duration-300 uppercase tracking-wider text-xs">Deploy My Architectural Review</button>
+            </form>
+        </div>
+    </section>
 
     <script>
-        // --- FILM APERTURE MOUSE SPOTLIGHT CONTROLLER ---
-        const canvas = document.getElementById('spotlight-canvas');
-        const ctx = canvas.getContext('2d');
-        const heroSection = document.querySelector('.hero-container');
-        let mouse = { x: -1000, y: -1000, active: false };
-
-        function resizeHeroCanvas() {
-            canvas.width = heroSection.offsetWidth;
-            canvas.height = heroSection.offsetHeight;
-        }
-        window.addEventListener('resize', resizeHeroCanvas);
-        resizeHeroCanvas();
-
-        heroSection.addEventListener('mousemove', (e) => {
-            const rect = heroSection.getBoundingClientRect();
-            mouse.x = e.clientX - rect.left;
-            mouse.y = e.clientY - rect.top;
-            mouse.active = true;
-            drawSpotlight();
-        });
-
-        heroSection.addEventListener('mouseleave', () => {
-            mouse.active = false;
-            drawSpotlight();
-        });
-
-        function drawSpotlight() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // Build the heavy dark cinematic shadow mask layer
-            ctx.fillStyle = 'rgba(12, 12, 12, 0.88)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            if (mouse.active) {
-                ctx.save();
-                // Punch a transparent lens aperture clean through the shadow mask layer
-                ctx.globalCompositeOperation = 'destination-out';
-                ctx.beginPath();
-                ctx.arc(mouse.x, mouse.y, 140, 0, Math.PI * 2, false);
-                ctx.fill();
-                ctx.restore();
-
-                // Add a faint glowing neon ring edge mimicking the camera aperture boundary
-                ctx.beginPath();
-                ctx.arc(mouse.x, mouse.y, 140, 0, Math.PI * 2, false);
-                ctx.strokeStyle = 'rgba(0, 245, 212, 0.25)';
-                ctx.lineWidth = 2;
-                ctx.stroke();
+        // --- DATA DICTIONARY ENGINE CONFIGURATION ---
+        const DATA_TRACKS = {
+            creative: {
+                title: "The Creative Studio Suite",
+                headline: "Stories that Captivate.",
+                items: [
+                    { title: "Social Content Production", desc: "Scripting and filming high-retention comedic sketches and organic creative spots to kill customer scroll patterns." },
+                    { title: "Paid Performance Ad Strategy", desc: "Deploying high-converting visual media directly into active ad managers optimized to capture maximum visibility." },
+                    { title: "Email Retention Marketing", desc: "Designing visual layouts and custom messaging flows to consistently retain and convert long-term pipeline value." }
+                ]
+            },
+            tech: {
+                title: "The Engineering Lab Suite",
+                headline: "Systems that Scale.",
+                items: [
+                    { title: "Bespoke CRM Frameworks", desc: "Building architecture blueprints entirely tailored to your operation maps to secure data without generic tool limitations." },
+                    { title: "Mobile & Web App Build", desc: "Architecting seamless full-stack user products with zero execution speed drag." },
+                    { title: "AI Pipeline Automation", desc: "Weaving advanced automation scripts into routine business actions to eliminate heavy internal manual workloads." }
+                ]
             }
-        }
-        drawSpotlight();
+        };
 
-        // --- INTELLIGENT CHRONOLOGICAL MATRIX FLOW REASONER ---
-        // Defined true deployment order hierarchy execution indexes
-        const CHRONO_ORDER = [
-            { id: 'param-app', label: 'Mobile App Dev', orderIndex: 1, icon: '📲', phase: 'FOUNDATION', text: 'Architecting your custom core mobile tool before launching campaigns to eliminate structural usage crashes.' },
-            { id: 'param-webpage', label: 'Custom Webpage', orderIndex: 2, icon: '💻', phase: 'FOUNDATION', text: 'Building rapid native digital landing pages to hold extreme traffic inflow without slowing down.' },
-            { id: 'param-software', label: 'Software Integration', orderIndex: 3, icon: '⚙️', phase: 'FOUNDATION', text: 'Binding legacy software fragments seamlessly via clean custom API layers.' },
-            { id: 'param-crm', label: 'Bespoke CRM', orderIndex: 4, icon: '🗄️', phase: 'ECOSYSTEM', text: 'Deploying your secure custom database to catch and organize metrics long before marketing goes live.' },
-            { id: 'param-email', label: 'Email Automation', orderIndex: 5, icon: '✉️', phase: 'ECOSYSTEM', text: 'Structuring custom retention triggers to instantly convert traffic value automatically.' },
-            { id: 'param-ai', label: 'AI Integration', orderIndex: 6, icon: '🧠', phase: 'ECOSYSTEM', text: 'Injecting advanced system reasoning models deep into active channels to kill manual tasks.' },
-            { id: 'param-commercial', label: 'Cinematic Commercial', orderIndex: 7, icon: '🎬', phase: 'AMPLIFICATION', text: 'Producing elite visual studio commercials to showcase your fully built digital platform with high authority.' },
-            { id: 'param-sketch', label: 'Comedic Sketch', orderIndex: 8, icon: '📱', phase: 'AMPLIFICATION', text: 'Scripting top-tier attention-grabbing performance sketch items to route traffic onto your custom platform.' },
-            { id: 'param-management', label: 'Social Management', orderIndex: 9, icon: '📊', phase: 'AMPLIFICATION', text: 'Orchestrating cross-channel algorithmic audience scale strategies now that our infrastructure is solid.' }
+        let selectedServicesLog = "Initial System Sandbox Setup";
+
+        // --- TRACK NAVIGATION STATE MANAGER ---
+        function selectTrack(trackType) {
+            const sideCreative = document.getElementById('side-creative');
+            const sideTech = document.getElementById('side-tech');
+            const revealSection = document.getElementById('services-reveal-section');
+            const cardsContainer = document.getElementById('dynamic-cards-container');
+            const revealTitle = document.getElementById('reveal-title');
+            const mainHead = document.getElementById('main-headline');
+
+            // Reset classes
+            sideCreative.className = "page-state flex flex-col items-center justify-center text-center cursor-pointer group p-6 rounded-3xl";
+            sideTech.className = "page-state flex flex-col items-center justify-center text-center cursor-pointer group p-6 rounded-3xl";
+
+            let displayItems = [];
+
+            if (trackType === 'creative') {
+                sideTech.classList.add('opacity-10', 'scale-75', 'pointer-events-none');
+                mainHead.textContent = DATA_TRACKS.creative.headline;
+                displayItems = DATA_TRACKS.creative.items;
+                revealTitle.textContent = DATA_TRACKS.creative.title;
+                selectedServicesLog = "Selected: Creative Marketing Studio Track";
+            } else if (trackType === 'tech') {
+                sideCreative.classList.add('opacity-10', 'scale-75', 'pointer-events-none');
+                mainHead.textContent = DATA_TRACKS.tech.headline;
+                displayItems = DATA_TRACKS.tech.items;
+                revealTitle.textContent = DATA_TRACKS.tech.title;
+                selectedServicesLog = "Selected: Custom Engineering Lab Track";
+            } else {
+                // If 'both' is selected, display everything
+                mainHead.innerHTML = `Stories that <span class="text-brand-turquoise">Captivate</span>. Systems that <span class="text-brand-turquoise">Scale</span>.`;
+                displayItems = [...DATA_TRACKS.creative.items, ...DATA_TRACKS.tech.items];
+                revealTitle.textContent = "The Full Integration Recipe";
+                selectedServicesLog = "Selected: Full-Service Hybrid Integration (Studio + Lab)";
+            }
+
+            // Build structural cards with motion entry styling classes
+            cardsContainer.innerHTML = displayItems.map((item, index) => `
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 transition-all duration-500 transform translate-y-4 opacity-0" style="animation: fadeIn 0.5s ease forwards ${index * 0.1}s">
+                    <span class="font-mono text-xs text-brand-turquoise font-bold uppercase">MODULE // 0${index + 1}</span>
+                    <h4 class="text-xl font-bold mt-2 text-white">${item.title}</h4>
+                    <p class="text-sm text-gray-400 mt-3 leading-relaxed">${item.desc}</p>
+                </div>
+            `).join('');
+
+            revealSection.classList.remove('hidden');
+            setTimeout(() => {
+                revealSection.classList.add('opacity-100');
+                revealSection.scrollIntoView({ behavior: 'smooth' });
+            }, 50);
+
+            syncFormBriefText();
+        }
+
+        function resetExperience() {
+            document.getElementById('side-creative').className = "page-state flex flex-col items-center justify-center text-center cursor-pointer group p-6 rounded-3xl hover:bg-white/5";
+            document.getElementById('side-tech').className = "page-state flex flex-col items-center justify-center text-center cursor-pointer group p-6 rounded-3xl hover:bg-white/5";
+            document.getElementById('main-headline').textContent = "What is your business hungry for?";
+            const revealSection = document.getElementById('services-reveal-section');
+            revealSection.classList.add('opacity-0');
+            setTimeout(() => revealSection.classList.add('hidden'), 500);
+        }
+
+        function scrollToContact() {
+            document.getElementById('contact-form-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // --- MINI GAME: GAME CONFIGURATION & ENGINE ---
+        const boardCells = document.querySelectorAll('.ttt-cell');
+        const statusText = document.getElementById('game-status-text');
+        let gameActive = true;
+        let currentPlayer = "🧁"; 
+        let gameState = ["", "", "", "", "", "", "", "", ""];
+        let gameScoreMessage = "Game Status: Unfinished or skipped.";
+
+        const winConditions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Cols
+            [0, 4, 8], [2, 4, 6]             // Diagonals
         ];
 
-        const diagramDisplay = document.getElementById('diagram-display-engine');
-        const bulletDisplay = document.getElementById('text-bullet-brief');
-        const versionTag = document.getElementById('module-version-tag');
-        const finalBriefField = document.getElementById('form-project-brief');
+        boardCells.forEach(cell => cell.addEventListener('click', handleCellClick));
 
-        function rebuildChronologicalFlow() {
-            // Filter elements down to what is toggled, then sort them according to real deployment hierarchy
-            let activeNodes = CHRONO_ORDER.filter(item => document.getElementById(item.id).checked);
+        function handleCellClick(e) {
+            const clickedCell = e.target;
+            const clickedCellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
+
+            if (gameState[clickedCellIndex] !== "" || !gameActive || currentPlayer === "🤖") return;
+
+            makeMove(clickedCellIndex, "🧁");
+            checkForWin();
+
+            if (gameActive) {
+                statusText.textContent = "The Tech Engine is calculating counter-actions...";
+                currentPlayer = "🤖";
+                setTimeout(aiComputerMove, 600);
+            }
+        }
+
+        function makeMove(index, playerSign) {
+            gameState[index] = playerSign;
+            boardCells[index].textContent = playerSign;
+            boardCells[index].classList.add(playerSign === "🧁" ? 'text-brand-turquoise' : 'text-brand-magenta');
+        }
+
+        function aiComputerMove() {
+            if (!gameActive) return;
+
+            // Simple strategic checker: Try to secure center square or select first empty array slot
+            let openSlots = gameState.map((val, idx) => val === "" ? idx : null).filter(val => val !== null);
             
-            versionTag.textContent = `PRODUCTION SEQUENCE_v${activeNodes.length}.9:`;
+            let chosenMove = openSlots.includes(4) ? 4 : openSlots[Math.floor(Math.random() * openSlots.length)];
+            
+            if (chosenMove !== undefined) {
+                makeMove(chosenMove, "🤖");
+                statusText.textContent = "Robot placed. Your move—break the balance.";
+                checkForWin();
+                currentPlayer = "🧁";
+            }
+        }
 
-            if (activeNodes.length === 0) {
-                diagramDisplay.innerHTML = `<div class="font-mono text-xs text-gray-600 animate-pulse">[ SYSTEM MATRIX IDLE: TOGGLE INPUTS ]</div>`;
-                bulletDisplay.innerHTML = `<p class="text-gray-500 italic">No nodes selected. Build your ideal operations matrix to map out a precise blueprint strategy.</p>`;
+        function checkForWin() {
+            let roundWon = false;
+            for (let i = 0; i < winConditions.length; i++) {
+                const [a, b, c] = winConditions[i];
+                if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
+                    roundWon = true;
+                    break;
+                }
+            }
+
+            if (roundWon) {
+                gameActive = false;
+                if (currentPlayer === "🧁") {
+                    statusText.innerHTML = `<span class="text-brand-turquoise font-bold">Unbelievable! You won.</span> You've proved creativity can conquer code. Let's build your pipeline strategy below.`;
+                    gameScoreMessage = "Game Match Result: User Won with Cupcake!";
+                } else {
+                    statusText.innerHTML = `<span class="text-brand-magenta font-bold">Robot Wins.</span> The systems held the line. Let's merge your creativity with our code to balance the scale below.`;
+                    gameScoreMessage = "Game Match Result: Computer Won with Robot AI.";
+                }
+                setTimeout(scrollToContact, 1500);
+                syncFormBriefText();
                 return;
             }
 
-            // Build structural chart items
-            let bulletsHTML = "";
-            let width = 300;
-            let height = activeNodes.length * 70 + 20;
-            let svgHTML = `<svg width="100%" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">`;
-
-            activeNodes.forEach((node, idx) => {
-                let y = 35 + (idx * 70);
-                let x = width / 2;
-                let strokeColor = node.phase === 'FOUNDATION' ? '#00bbf9' : node.phase === 'ECOSYSTEM' ? '#ffffff' : '#00f5d4';
-
-                // Render functional vector lines bridging chronological gaps
-                if (idx < activeNodes.length - 1) {
-                    let nextY = y + 70;
-                    svgHTML += `
-                        <line x1="${x}" y1="${y + 18}" x2="${x}" y2="${nextY - 18}" stroke="${strokeColor}" stroke-width="1.5" class="glow-line" opacity="0.35" />
-                        <polygon points="${x},${nextY - 16} ${x-3},${nextY-22} ${x+3},${nextY-22}" fill="${strokeColor}" opacity="0.6"/>
-                    `;
-                }
-
-                svgHTML += `
-                    <g transform="translate(${x - 70}, ${y - 18})">
-                        <rect width="140" height="36" rx="6" fill="#060a12" stroke="${strokeColor}" stroke-width="1.5" style="filter: drop-shadow(0 0 4px ${strokeColor}30);"/>
-                        <text x="10" y="22" font-size="12">${node.icon}</text>
-                        <text x="28" y="21" font-family="monospace" font-size="9" fill="#ffffff" font-weight="bold" letter-spacing="0.5">${node.label.toUpperCase()}</text>
-                    </g>
-                `;
-
-                bulletsHTML += `
-                    <div class="border-l-2 pl-3 border-gray-800 hover:border-brand-turquoise transition duration-200">
-                        <span class="text-[9px] font-mono tracking-widest text-gray-500 block uppercase">STEP 0${idx+1} // ${node.phase}</span>
-                        <h4 class="font-bold text-white text-xs mt-0.5">${node.label}</h4>
-                        <p class="text-gray-400 mt-1 leading-relaxed text-[11px]">${node.text}</p>
-                    </div>
-                `;
-            });
-
-            svgHTML += `</svg>`;
-            
-            diagramDisplay.innerHTML = svgHTML;
-            bulletDisplay.innerHTML = bulletsHTML;
-            
-            // Auto-refresh dynamic form text brief values behind the scenes
-            syncBriefToTextField(activeNodes);
+            if (!gameState.includes("")) {
+                gameActive = false;
+                statusText.innerHTML = `<span class="text-white font-bold">It's a perfect tie!</span> Just like we predicted. Separating art and code leads to deadlocks. Let's combine them below.`;
+                gameScoreMessage = "Game Match Result: Ended in a predictive Tie.";
+                setTimeout(scrollToContact, 1500);
+                syncFormBriefText();
+                return;
+            }
         }
 
-        function syncBriefToTextField(nodes) {
-            let briefText = "2B1 CREATIVE DEPLOYMENT BLUEPRINT:\n=================================\n";
-            nodes.forEach((n, i) => {
-                briefText += `STEP ${i+1}: [${n.label}] (${n.phase})\n -> Focus: ${n.text}\n\n`;
-            });
-            briefText += "=================================\nPlease review my custom infrastructure sequencing plan above for our upcoming discovery session strategy.";
-            finalBriefField.value = briefText;
+        // --- SUBMISSION INTEGRATION BRIEFCASE ---
+        function syncFormBriefText() {
+            const briefInput = document.getElementById('briefcase-input');
+            briefInput.value = `2B1 INTERACTIVE USER PROFILE TRANSMISSION:\n----------------------------------------\n${selectedServicesLog}\n${gameScoreMessage}\n----------------------------------------\nLet's deploy this unified recipe plan during our upcoming strategy review session!`;
         }
-
-        function deployCurrentPlan() {
-            // Instantly transition viewport down directly to form inputs
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        // Add execution triggers across elements
-        CHRONO_ORDER.forEach(item => {
-            document.getElementById(item.id).addEventListener('change', rebuildChronologicalFlow);
-        });
         
-        // Initial build on load
-        rebuildChronologicalFlow();
+        // Initial execution on layout boot
+        syncFormBriefText();
     </script>
 </body>
 </html>
