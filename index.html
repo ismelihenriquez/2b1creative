@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2B1 Creative - Growth Agency</title>
+    <title>2B1 Creative - Production Studio & Tech Agency</title>
     <link rel="icon" href="https://github.com/ismelihenriquez/2b1creative/blob/main/2B1-logo.png?raw=true" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,10 +15,11 @@
             background-color: #0c0c0c;
             color: #1a202c;
         }
-        /* Custom turquoise color */
+        /* Custom turquoise & neon colors */
         .text-brand-turquoise { color: #00f5d4; }
         .bg-brand-turquoise { background-color: #00f5d4; }
         .border-brand-turquoise { border-color: #00f5d4; }
+        .text-brand-magenta { color: #ff007f; }
 
         /* Custom dark background */
         .bg-brand-dark { background-color: #0c0c0c; }
@@ -55,7 +56,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* Stronger black overlay */
+            background-color: rgba(0, 0, 0, 0.65); /* Strong cinematic overlay */
             z-index: 2;
         }
         .hero-content {
@@ -63,13 +64,18 @@
             z-index: 3;
         }
 
-        .service-card {
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-10px);
+        /* Matrix custom switch states */
+        .matrix-switch:checked + .switch-bg {
+            background-color: rgba(0, 245, 212, 0.2);
             border-color: #00f5d4;
-            box-shadow: 0 0 25px rgba(0, 245, 212, 0.2);
+            box-shadow: 0 0 15px rgba(0, 245, 212, 0.3);
+        }
+        .matrix-switch:checked + .switch-bg .switch-dot {
+            transform: translateX(1.25rem);
+            background-color: #00f5d4;
+        }
+        .matrix-switch:checked + .switch-bg .switch-text {
+            color: #ffffff;
         }
     </style>
 </head>
@@ -88,10 +94,10 @@
                 <nav class="hidden md:flex md:grow">
                     <ul class="flex grow justify-end flex-wrap items-center">
                         <li><a href="index.html" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Home</a></li>
-                        <li><a href="#services" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Services</a></li>
+                        <li><a href="#matrix-section" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Capabilities</a></li>
                         <li><a href="work/" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Our Work</a></li>
                         <li><a href="#contact" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Contact</a></li>
-                        <li><a href="#contact" class="btn text-brand-dark bg-brand-turquoise hover:bg-white ml-4 rounded-md px-5 py-2 transition duration-300">Get a Quote</a></li>
+                        <li><a href="#contact" class="btn text-brand-dark bg-brand-turquoise hover:bg-white ml-4 rounded-md px-5 py-2 transition duration-300 font-semibold">Get a Quote</a></li>
                     </ul>
                 </nav>
 
@@ -110,10 +116,10 @@
         <div id="mobile-menu" class="hidden md:hidden bg-brand-dark bg-opacity-95 backdrop-blur-sm">
             <ul class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
                 <li><a href="index.html" class="mobile-menu-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a></li>
-                <li><a href="#services" class="mobile-menu-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Services</a></li>
+                <li><a href="#matrix-section" class="mobile-menu-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Capabilities</a></li>
                 <li><a href="work/" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Our Work</a></li>
                 <li><a href="#contact" class="mobile-menu-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a></li>
-                <li><a href="#contact" class="mobile-menu-link btn text-brand-dark bg-brand-turquoise hover:bg-white mt-4 block w-1/2 mx-auto py-2 rounded-md">Get a Quote</a></li>
+                <li><a href="#contact" class="mobile-menu-link btn text-brand-dark bg-brand-turquoise hover:bg-white mt-4 block w-1/2 mx-auto py-2 rounded-md font-semibold">Get a Quote</a></li>
             </ul>
         </div>
     </header>
@@ -126,73 +132,129 @@
             <div class="hero-overlay"></div>
             <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6">
                 <div class="text-center">
-                    <h1 class="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 text-white" data-aos="zoom-y-out">
-                        Build <span class="gradient-text">Limitless</span> Digital Experiences
+                    <h1 class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tighter mb-6 text-white">
+                        Stories that <span class="gradient-text">Captivate</span>.<br class="hidden sm:inline"> Systems that <span class="text-white border-b-4 border-brand-turquoise">Scale</span>.
                     </h1>
-                    <div class="max-w-4xl mx-auto">
-                        <p class="text-xl text-gray-400 mb-8" data-aos="zoom-y-out" data-aos-delay="150">
-                            We are a growth agency that combines data-driven marketing with <span class="text-brand-turquoise font-semibold">custom web and software development</span> to help businesses scale.
+                    <div class="max-w-3xl mx-auto">
+                        <p class="text-xl text-gray-300 mb-10 leading-relaxed">
+                            We are a full-service production studio and creative technology agency. We treat your brand like an original series—scripting high-converting comedic sketches and commercials, while engineering the custom apps, CRMs, and AI automation workflows to power your business empire.
                         </p>
-                        <!-- THIS IS THE NEW, FIXED CODE -->
-<div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
-    <a href="#contact" class="btn text-white bg-brand-turquoise hover:bg-opacity-80 w-full sm:w-auto rounded-lg py-3 px-8 shadow-lg transition duration-300">Start Your Project</a>
-    <a href="#services" class="btn text-white bg-gray-800 hover:bg-gray-700 w-full sm:w-auto rounded-lg py-3 px-8 shadow-lg transition duration-300">Learn More</a>
-</div>
+                        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
+                            <a href="#contact" class="btn text-brand-dark bg-brand-turquoise hover:bg-opacity-90 font-bold w-full sm:w-auto rounded-lg py-4 px-8 shadow-lg transition duration-300">Produce Your Vision</a>
+                            <a href="#matrix-section" class="btn text-white bg-gray-900 border border-gray-800 hover:bg-gray-800 w-full sm:w-auto rounded-lg py-4 px-8 shadow-lg transition duration-300 font-medium">Explore the Matrix</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section id="services" class="py-20 bg-brand-light-dark">
+        <!-- Interactive Production Matrix Section -->
+        <section id="matrix-section" class="py-24 bg-brand-light-dark border-t border-b border-gray-900">
             <div class="max-w-7xl mx-auto px-4 sm:px-6">
-                <div class="text-center mb-20">
-                    <h2 class="text-4xl font-extrabold text-white">What We Do</h2>
-                    <p class="text-lg text-gray-400 mt-2">We merge technology and creativity to fuel your growth.</p>
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">The Production Matrix</h2>
+                    <p class="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">We treat every business uniquely. Select your parameters below to see how we build your custom ecosystem.</p>
                 </div>
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Service Card 1: Web & App Development -->
-                    <div class="service-card bg-gray-900/50 p-8 rounded-2xl border border-gray-800">
-                        <div class="mb-6">
-                            <svg class="w-10 h-10 text-brand-turquoise" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <!-- Console Frame inspired by watermarked_img_3526291138164113850.png -->
+                <div class="bg-gray-950 rounded-2xl border border-gray-800 shadow-2xl p-6 md:p-8 grid lg:grid-cols-12 gap-8">
+                    
+                    <!-- Left Column: Controls (4 Cols) -->
+                    <div class="lg:col-span-5 space-y-3 flex flex-col justify-center">
+                        <span class="text-xs font-mono tracking-widest text-brand-turquoise uppercase block mb-2">// SELECT YOUR ENGINE PARAMETERS</span>
+                        
+                        <!-- Toggle 1 -->
+                        <label class="relative flex items-center cursor-pointer select-none">
+                            <input type="checkbox" id="param-sketch" class="sr-only matrix-switch" checked>
+                            <div class="switch-bg flex items-center justify-between w-full p-4 bg-gray-900/40 border border-gray-800/80 rounded-xl transition duration-300 hover:border-gray-700">
+                                <span class="switch-text font-mono text-sm text-gray-400 transition duration-300">[HIGH-CONVERTING SKETCH]</span>
+                                <div class="w-10 h-5 bg-gray-800 rounded-full p-0.5 transition duration-300 flex items-center relative">
+                                    <div class="switch-dot w-4 h-4 bg-gray-500 rounded-full transition duration-300 transform"></div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Toggle 2 -->
+                        <label class="relative flex items-center cursor-pointer select-none">
+                            <input type="checkbox" id="param-commercial" class="sr-only matrix-switch">
+                            <div class="switch-bg flex items-center justify-between w-full p-4 bg-gray-900/40 border border-gray-800/80 rounded-xl transition duration-300 hover:border-gray-700">
+                                <span class="switch-text font-mono text-sm text-gray-400 transition duration-300">[CINEMATIC COMMERCIAL]</span>
+                                <div class="w-10 h-5 bg-gray-800 rounded-full p-0.5 transition duration-300 flex items-center relative">
+                                    <div class="switch-dot w-4 h-4 bg-gray-500 rounded-full transition duration-300 transform"></div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Toggle 3 -->
+                        <label class="relative flex items-center cursor-pointer select-none">
+                            <input type="checkbox" id="param-crm" class="sr-only matrix-switch" checked>
+                            <div class="switch-bg flex items-center justify-between w-full p-4 bg-gray-900/40 border border-gray-800/80 rounded-xl transition duration-300 hover:border-gray-700">
+                                <span class="switch-text font-mono text-sm text-gray-400 transition duration-300">[BESPOKE CRM / ECOSYSTEM]</span>
+                                <div class="w-10 h-5 bg-gray-800 rounded-full p-0.5 transition duration-300 flex items-center relative">
+                                    <div class="switch-dot w-4 h-4 bg-gray-500 rounded-full transition duration-300 transform"></div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Toggle 4 -->
+                        <label class="relative flex items-center cursor-pointer select-none">
+                            <input type="checkbox" id="param-app" class="sr-only matrix-switch">
+                            <div class="switch-bg flex items-center justify-between w-full p-4 bg-gray-900/40 border border-gray-800/80 rounded-xl transition duration-300 hover:border-gray-700">
+                                <span class="switch-text font-mono text-sm text-gray-400 transition duration-300">[MOBILE / WEB APP DEV]</span>
+                                <div class="w-10 h-5 bg-gray-800 rounded-full p-0.5 transition duration-300 flex items-center relative">
+                                    <div class="switch-dot w-4 h-4 bg-gray-500 rounded-full transition duration-300 transform"></div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Toggle 5 -->
+                        <label class="relative flex items-center cursor-pointer select-none">
+                            <input type="checkbox" id="param-ai" class="sr-only matrix-switch" checked>
+                            <div class="switch-bg flex items-center justify-between w-full p-4 bg-gray-900/40 border border-gray-800/80 rounded-xl transition duration-300 hover:border-gray-700">
+                                <span class="switch-text font-mono text-sm text-gray-400 transition duration-300">[AI WORKFLOW INTEGRATION]</span>
+                                <div class="w-10 h-5 bg-gray-800 rounded-full p-0.5 transition duration-300 flex items-center relative">
+                                    <div class="switch-dot w-4 h-4 bg-gray-500 rounded-full transition duration-300 transform"></div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Toggle 6 -->
+                        <label class="relative flex items-center cursor-pointer select-none">
+                            <input type="checkbox" id="param-strategy" class="sr-only matrix-switch">
+                            <div class="switch-bg flex items-center justify-between w-full p-4 bg-gray-900/40 border border-gray-800/80 rounded-xl transition duration-300 hover:border-gray-700">
+                                <span class="switch-text font-mono text-sm text-gray-400 transition duration-300">[OMNICHANNEL STRATEGY]</span>
+                                <div class="w-10 h-5 bg-gray-800 rounded-full p-0.5 transition duration-300 flex items-center relative">
+                                    <div class="switch-dot w-4 h-4 bg-gray-500 rounded-full transition duration-300 transform"></div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <!-- Right Column: Interactive Blueprint Output (7 Cols) -->
+                    <div class="lg:col-span-7 bg-gray-900/30 border border-gray-800/60 rounded-xl p-6 md:p-8 flex flex-col justify-between min-h-[400px]">
+                        <div>
+                            <div class="flex items-center justify-between border-b border-gray-800 pb-4 mb-6">
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 rounded-full bg-brand-turquoise shadow-[0_0_8px_#00f5d4]"></div>
+                                    <h3 class="font-mono text-xs tracking-wider text-white uppercase">YOUR BESPOKE PRODUCTION BRIEF</h3>
+                                </div>
+                                <span id="module-tag" class="font-mono text-xs text-gray-500">MODULE 2.1</span>
+                            </div>
+                            
+                            <!-- Dynamic Content Targeted Box -->
+                            <div id="matrix-display" class="space-y-6 text-gray-300 transition-all duration-300">
+                                <!-- Dynamic lines will inject perfectly here via JS -->
+                            </div>
                         </div>
-                        <h3 class="text-2xl font-bold text-white mb-4">Web & App Development</h3>
-                        <p class="text-gray-400 mb-6">We turn complex problems into beautiful, intuitive digital solutions. From sleek marketing sites to robust enterprise applications, we build products that perform.</p>
-                        <ul class="space-y-3 text-gray-400 text-left text-sm">
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">Full-Stack Development</strong></div></li>
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">UI/UX Design</strong></div></li>
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">E-commerce Solutions</strong></div></li>
-                        </ul>
+                        
+                        <div class="border-t border-gray-800/80 pt-4 mt-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                            <p class="font-mono text-xs text-gray-500">Status: Dynamic Architecture Matrix online.</p>
+                            <a href="#contact" class="text-xs font-mono font-bold uppercase text-brand-turquoise tracking-wider flex items-center hover:underline">
+                                Deploy This Architecture Plan <span class="ml-2">&rarr;</span>
+                            </a>
+                        </div>
                     </div>
 
-                    <!-- Service Card 2: Custom CRM & Automations -->
-                    <div class="service-card bg-gray-900/50 p-8 rounded-2xl border border-gray-800">
-                        <div class="mb-6">
-                             <svg class="w-10 h-10 text-brand-turquoise" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-4">Custom CRM & Automations</h3>
-                        <p class="text-gray-400 mb-6">Stop fighting with off-the-shelf software. We build bespoke CRMs and workflow automations that are tailored to your exact business processes.</p>
-                         <ul class="space-y-3 text-gray-400 text-left text-sm">
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">Bespoke Systems</strong></div></li>
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">AI Integration</strong></div></li>
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">Process Streamlining</strong></div></li>
-                        </ul>
-                    </div>
-
-                    <!-- Service Card 3: Digital Marketing & Strategy -->
-                    <div class="service-card bg-gray-900/50 p-8 rounded-2xl border border-gray-800">
-                        <div class="mb-6">
-                            <svg class="w-10 h-10 text-brand-turquoise" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-4">Digital Marketing & Strategy</h3>
-                        <p class="text-gray-400 mb-6">Great products deserve to be seen. We create and execute data-driven marketing strategies that build your brand and drive measurable results.</p>
-                         <ul class="space-y-3 text-gray-400 text-left text-sm">
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">Growth Strategy</strong></div></li>
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">Content & Social Media</strong></div></li>
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">Performance Analytics</strong></div></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </section>
@@ -200,9 +262,9 @@
         <!-- CTA to Work Page -->
         <section class="py-20 bg-brand-dark">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-                <h2 class="text-3xl font-extrabold text-white mb-4">See Our Results</h2>
-                <p class="text-lg text-gray-400 mb-8">We're proud of the work we do and the results we deliver.</p>
-                <a href="work/" class="btn text-brand-dark bg-brand-turquoise hover:bg-white rounded-lg py-3 px-8 shadow-lg transition duration-300 text-lg font-semibold">View Our Work</a>
+                <h2 class="text-3xl font-extrabold text-white mb-4">See Our Work in Action</h2>
+                <p class="text-lg text-gray-400 mb-8">Take a look at how we merge elite entertainment value with immaculate engineering.</p>
+                <a href="work/" class="btn text-brand-dark bg-brand-turquoise hover:bg-white rounded-lg py-3 px-8 shadow-lg transition duration-300 text-lg font-semibold">View Our Showreel</a>
             </div>
         </section>
 
@@ -215,25 +277,25 @@
                     <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-24 h-24 bg-blue-500 rounded-full opacity-50"></div>
 
                     <div class="relative text-center">
-                        <h2 class="text-4xl font-extrabold text-white mb-4">Ready to Grow?</h2>
-                        <p class="text-xl text-gray-300 mb-8">Let's build something incredible together. Tell us about your project.</p>
+                        <h2 class="text-4xl font-extrabold text-white mb-4">Ready to Build Outside the Box?</h2>
+                        <p class="text-xl text-gray-300 mb-8">Let's craft your custom blueprint. Tell us about your production or software needs.</p>
                         <form class="max-w-xl mx-auto">
                             <div class="space-y-4">
                                 <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-turquoise" required>
                                 <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-turquoise" required>
                                 <select class="w-full px-4 py-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-turquoise" required>
-                                    <option value="" disabled selected>What service are you interested in?</option>
-                                    <option value="dev">Web & App Development</option>
-                                    <option value="crm">Custom CRM & Automations</option>
-                                    <option value="marketing">Digital Marketing & Strategy</option>
-                                    <option value="other">Something Else</option>
+                                    <option value="" disabled selected>What kind of concept are we bringing to life?</option>
+                                    <option value="production">Cinematic Content & Production (Sketches, Commercials)</option>
+                                    <option value="dev">Bespoke Software / Mobile & Web Apps</option>
+                                    <option value="crm">Custom CRM Systems & AI Workflows</option>
+                                    <option value="full">Full-Service Integration (The Whole Ecosystem)</option>
                                 </select>
-                                <textarea placeholder="Tell us about your project..." rows="4" class="w-full px-4 py-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-turquoise" required></textarea>
+                                <textarea placeholder="Tell us your grandest ideas, whether it's a script concept, a software issue, or an automated workflow..." rows="4" class="w-full px-4 py-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-turquoise" required></textarea>
                             </div>
-                            <button type="submit" class="btn text-brand-dark bg-brand-turquoise hover:bg-white w-full rounded-md px-8 py-3 font-semibold transition duration-300 mt-6">Book a Discovery Call</button>
+                            <button type="submit" class="btn text-brand-dark bg-brand-turquoise hover:bg-white w-full rounded-md px-8 py-3 font-semibold transition duration-300 mt-6">Book a Discovery Session</button>
                         </form>
                         <p class="text-sm text-gray-500 mt-6">
-                            Or email us directly at <a href="mailto:hello@2b1creative.com" class="text-brand-turquoise hover:underline">hello@2b1creative.com</a>
+                            Or reach the studio directly at <a href="mailto:hello@2b1creative.com" class="text-brand-turquoise hover:underline">hello@2b1creative.com</a>
                         </p>
                     </div>
                 </div>
@@ -259,10 +321,11 @@
                     </svg>
                 </a>
             </div>
-            <p class="text-gray-400">&copy; 2024 2B1 Creative. All rights reserved.</p>
+            <p class="text-gray-400">&copy; 2026 2B1 Creative. All rights reserved.</p>
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
         // Header scroll behavior
         const header = document.getElementById('header');
@@ -302,6 +365,100 @@
             observer.observe(el);
         });
 
+        // Interactive Matrix Core Logic
+        const switches = {
+            sketch: document.getElementById('param-sketch'),
+            commercial: document.getElementById('param-commercial'),
+            crm: document.getElementById('param-crm'),
+            app: document.getElementById('param-app'),
+            ai: document.getElementById('param-ai'),
+            strategy: document.getElementById('param-strategy')
+        };
+        const display = document.getElementById('matrix-display');
+        const moduleTag = document.getElementById('module-tag');
+
+        function updateMatrixBrief() {
+            // Calculate a fun mock "module number" based on active options
+            let activeCount = Object.values(switches).filter(s => s.checked).length;
+            moduleTag.textContent = `SYSTEM REEL_v${activeCount}.4`;
+
+            let htmlOutput = "";
+
+            if (activeCount === 0) {
+                htmlOutput = `
+                    <div class="text-center py-8 text-gray-500 font-mono text-sm animate-pulse">
+                        [ SYSTEM IDLE: Flip engine variables on the left to engineer your blueprint. ]
+                    </div>
+                `;
+            } else {
+                // Construct the bespoke plan dynamically
+                if (switches.sketch.checked) {
+                    htmlOutput += `
+                        <div>
+                            <span class="text-xs font-mono tracking-wider text-brand-turquoise block mb-1">01 // THE HOOK (CREATIVE SKETCH)</span>
+                            <p class="text-sm text-gray-300">We write and film a high-converting, performance comedic sketch or native UGC asset tailored specifically to break standard scrolling patterns on social feeds.</p>
+                        </div>
+                    `;
+                }
+                if (switches.commercial.checked) {
+                    htmlOutput += `
+                        <div>
+                            <span class="text-xs font-mono tracking-wider text-brand-turquoise block mb-1">02 // VISUAL IDENTITY (CINEMATIC COMMERCIAL)</span>
+                            <p class="text-sm text-gray-300">Our studio handles full concept development, scriptwriting, and production to deliver a striking, high-end commercial asset that gives your company premium prestige.</p>
+                        </div>
+                    `;
+                }
+                if (switches.crm.checked) {
+                    htmlOutput += `
+                        <div>
+                            <span class="text-xs font-mono tracking-wider text-brand-magenta block mb-1">03 // INFRASTRUCTURE (BESPOKE DATA SYSTEMS)</span>
+                            <p class="text-sm text-gray-300">No generic tools. We build a proprietary backend framework and custom CRM ecosystem to capture, organize, and cleanly convert the traffic generated by our visual scripts.</p>
+                        </div>
+                    `;
+                }
+                if (switches.app.checked) {
+                    htmlOutput += `
+                        <div>
+                            <span class="text-xs font-mono tracking-wider text-brand-magenta block mb-1">04 // INTERACTIVE PRODUCT (CUSTOM DEVELOPMENT)</span>
+                            <p class="text-sm text-gray-300">We architect a custom mobile or web platform from the ground up, providing a seamless customer interface optimized for retention, unique tools, and maximum data speed.</p>
+                        </div>
+                    `;
+                }
+                if (switches.ai.checked) {
+                    htmlOutput += `
+                        <div>
+                            <span class="text-xs font-mono tracking-wider text-white border-b border-white/20 inline-block mb-1">05 // SPEED AUTOMATION (AI REASONING ENGINES)</span>
+                            <p class="text-sm text-gray-400">We infuse custom AI models and automations deep inside your systems—instantly handling operations, customer routing, and pipeline heavy-lifting with zero manual drag.</p>
+                        </div>
+                    `;
+                }
+                if (switches.strategy.checked) {
+                    htmlOutput += `
+                        <div>
+                            <span class="text-xs font-mono tracking-wider text-gray-400 block mb-1">06 // ORCHESTRATION (OMNICHANNEL DEPLOYMENT)</span>
+                            <p class="text-sm text-gray-300">A targeted growth strategy deployment designed to split-test data hooks across channels, maximizing ad spend and ensuring long-term systemic scaling.</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Quick fade out and in effect to make the transition look slick
+            display.style.opacity = 0;
+            setTimeout(() => {
+                display.innerHTML = htmlOutput;
+                display.style.opacity = 1;
+            }, 120);
+        }
+
+        // Attach event listeners to all checkboxes
+        Object.values(switches).forEach(checkbox => {
+            checkbox.addEventListener('change', updateMatrixBrief);
+        });
+
+        // Initialize display on load
+        updateMatrixBrief();
+
+
         // Particle Animation Logic
         const canvas = document.getElementById('hero-canvas');
         const ctx = canvas.getContext('2d');
@@ -325,7 +482,7 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = 'rgba(0, 245, 212, 0.5)';
+                ctx.fillStyle = 'rgba(0, 245, 212, 0.4)';
                 ctx.fill();
             }
             update() {
@@ -343,7 +500,7 @@
 
         function init() {
             particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 12000;
+            let numberOfParticles = (canvas.height * canvas.width) / 14000;
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
                 let x = (Math.random() * ((canvas.width - size * 2) - (size * 2)) + size * 2);
@@ -362,9 +519,10 @@
                     let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
                     + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
                     if (distance < (canvas.width/8) * (canvas.height/8)) {
-                        opacityValue = 1 - (distance/20000);
-                        ctx.strokeStyle = `rgba(0, 245, 212, ${opacityValue})`;
+                        opacityValue = 1 - (distance/22000);
+                        ctx.strokeStyle = `rgba(0, 245, 212, ${opacityValue * 0.7})`;
                         ctx.lineWidth = 1;
+                        ctx.clientX
                         ctx.beginPath();
                         ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
                         ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
