@@ -1,398 +1,54 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2B1 Creative - Growth Agency</title>
-    <link rel="icon" href="https://github.com/ismelihenriquez/2b1creative/blob/main/2B1-logo.png?raw=true" type="image/png">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0c0c0c;
-            color: #1a202c;
-        }
-        /* Custom turquoise color */
-        .text-brand-turquoise { color: #00f5d4; }
-        .bg-brand-turquoise { background-color: #00f5d4; }
-        .border-brand-turquoise { border-color: #00f5d4; }
-
-        /* Custom dark background */
-        .bg-brand-dark { background-color: #0c0c0c; }
-        .bg-brand-light-dark { background-color: #111111; }
-
-        /* Animation for fade-in on scroll */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in-element {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-        
-        /* Gradient text */
-        .gradient-text {
-            background: linear-gradient(45deg, #00f5d4, #00bbf9);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        
-        #hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* Stronger black overlay */
-            z-index: 2;
-        }
-        .hero-content {
-            position: relative;
-            z-index: 3;
-        }
-
-        .service-card {
-            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: #00f5d4;
-            box-shadow: 0 0 25px rgba(0, 245, 212, 0.2);
-        }
-    </style>
-</head>
-<body class="bg-brand-dark">
-
-    <!-- Header -->
-    <header class="fixed w-full z-40 transition-all duration-300 ease-in-out" id="header">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6">
-            <div class="flex items-center justify-between h-20">
-                <!-- Site branding -->
-                <div class="flex-shrink-0 mr-4">
-                    <a href="index.html" class="text-2xl font-extrabold text-white">2B1 <span class="text-brand-turquoise">Creative</span></a>
-                </div>
-
-                <!-- Desktop Navigation -->
-                <nav class="hidden md:flex md:grow">
-                    <ul class="flex grow justify-end flex-wrap items-center">
-                        <li><a href="index.html" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Home</a></li>
-                        <li><a href="#services" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Services</a></li>
-                        <li><a href="work/" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Our Work</a></li>
-                        <li><a href="#contact" class="text-gray-300 hover:text-white px-4 py-2 flex items-center transition duration-150 ease-in-out">Contact</a></li>
-                        <li><a href="#contact" class="btn text-brand-dark bg-brand-turquoise hover:bg-white ml-4 rounded-md px-5 py-2 transition duration-300">Get a Quote</a></li>
-                    </ul>
-                </nav>
-
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark bg-opacity-95 backdrop-blur-sm">
-            <ul class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
-                <li><a href="index.html" class="mobile-menu-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a></li>
-                <li><a href="#services" class="mobile-menu-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Services</a></li>
-                <li><a href="work/" class="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Our Work</a></li>
-                <li><a href="#contact" class="mobile-menu-link text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a></li>
-                <li><a href="#contact" class="mobile-menu-link btn text-brand-dark bg-brand-turquoise hover:bg-white mt-4 block w-1/2 mx-auto py-2 rounded-md">Get a Quote</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <main class="flex-grow">
-
-        <!-- Hero Section -->
-        <section class="relative flex items-center justify-center min-h-screen">
-            <canvas id="hero-canvas"></canvas>
-            <div class="hero-overlay"></div>
-            <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6">
-                <div class="text-center">
-                    <h1 class="text-5xl md:text-6xl font-extrabold leading-tighter tracking-tighter mb-4 text-white" data-aos="zoom-y-out">
-                        Build <span class="gradient-text">Limitless</span> Digital Experiences
-                    </h1>
-                    <div class="max-w-4xl mx-auto">
-                        <p class="text-xl text-gray-400 mb-8" data-aos="zoom-y-out" data-aos-delay="150">
-                            We are a growth agency that combines data-driven marketing with <span class="text-brand-turquoise font-semibold">custom web and software development</span> to help businesses scale.
-                        </p>
-                        <!-- THIS IS THE NEW, FIXED CODE -->
-<div class="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-md mx-auto">
-    <a href="#contact" class="btn text-white bg-brand-turquoise hover:bg-opacity-80 w-full sm:w-auto rounded-lg py-3 px-8 shadow-lg transition duration-300">Start Your Project</a>
-    <a href="#services" class="btn text-white bg-gray-800 hover:bg-gray-700 w-full sm:w-auto rounded-lg py-3 px-8 shadow-lg transition duration-300">Learn More</a>
-</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="py-20 bg-brand-light-dark">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6">
-                <div class="text-center mb-20">
-                    <h2 class="text-4xl font-extrabold text-white">What We Do</h2>
-                    <p class="text-lg text-gray-400 mt-2">We merge technology and creativity to fuel your growth.</p>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Service Card 1: Web & App Development -->
-                    <div class="service-card bg-gray-900/50 p-8 rounded-2xl border border-gray-800">
-                        <div class="mb-6">
-                            <svg class="w-10 h-10 text-brand-turquoise" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-4">Web & App Development</h3>
-                        <p class="text-gray-400 mb-6">We turn complex problems into beautiful, intuitive digital solutions. From sleek marketing sites to robust enterprise applications, we build products that perform.</p>
-                        <ul class="space-y-3 text-gray-400 text-left text-sm">
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">Full-Stack Development</strong></div></li>
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">UI/UX Design</strong></div></li>
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">E-commerce Solutions</strong></div></li>
-                        </ul>
-                    </div>
-
-                    <!-- Service Card 2: Custom CRM & Automations -->
-                    <div class="service-card bg-gray-900/50 p-8 rounded-2xl border border-gray-800">
-                        <div class="mb-6">
-                             <svg class="w-10 h-10 text-brand-turquoise" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-4">Custom CRM & Automations</h3>
-                        <p class="text-gray-400 mb-6">Stop fighting with off-the-shelf software. We build bespoke CRMs and workflow automations that are tailored to your exact business processes.</p>
-                         <ul class="space-y-3 text-gray-400 text-left text-sm">
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">Bespoke Systems</strong></div></li>
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">AI Integration</strong></div></li>
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">Process Streamlining</strong></div></li>
-                        </ul>
-                    </div>
-
-                    <!-- Service Card 3: Digital Marketing & Strategy -->
-                    <div class="service-card bg-gray-900/50 p-8 rounded-2xl border border-gray-800">
-                        <div class="mb-6">
-                            <svg class="w-10 h-10 text-brand-turquoise" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-4">Digital Marketing & Strategy</h3>
-                        <p class="text-gray-400 mb-6">Great products deserve to be seen. We create and execute data-driven marketing strategies that build your brand and drive measurable results.</p>
-                         <ul class="space-y-3 text-gray-400 text-left text-sm">
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">Growth Strategy</strong></div></li>
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">Content & Social Media</strong></div></li>
-                            <li class="flex items-start"><span class="text-brand-turquoise mr-3 mt-1">&#10003;</span> <div><strong class="text-gray-200">Performance Analytics</strong></div></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA to Work Page -->
-        <section class="py-20 bg-brand-dark">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-                <h2 class="text-3xl font-extrabold text-white mb-4">See Our Results</h2>
-                <p class="text-lg text-gray-400 mb-8">We're proud of the work we do and the results we deliver.</p>
-                <a href="work/" class="btn text-brand-dark bg-brand-turquoise hover:bg-white rounded-lg py-3 px-8 shadow-lg transition duration-300 text-lg font-semibold">View Our Work</a>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="py-20 bg-white">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6">
-                <div class="relative bg-gray-900 rounded-2xl shadow-2xl p-8 md:p-12">
-                     <!-- Decoration -->
-                    <div class="absolute top-0 right-0 -mt-4 -mr-4 w-16 h-16 bg-brand-turquoise rounded-full opacity-50"></div>
-                    <div class="absolute bottom-0 left-0 -mb-4 -ml-4 w-24 h-24 bg-blue-500 rounded-full opacity-50"></div>
-
-                    <div class="relative text-center">
-                        <h2 class="text-4xl font-extrabold text-white mb-4">Ready to Grow?</h2>
-                        <p class="text-xl text-gray-300 mb-8">Let's build something incredible together. Tell us about your project.</p>
-                        <form class="max-w-xl mx-auto">
-                            <div class="space-y-4">
-                                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-turquoise" required>
-                                <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-turquoise" required>
-                                <select class="w-full px-4 py-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-turquoise" required>
-                                    <option value="" disabled selected>What service are you interested in?</option>
-                                    <option value="dev">Web & App Development</option>
-                                    <option value="crm">Custom CRM & Automations</option>
-                                    <option value="marketing">Digital Marketing & Strategy</option>
-                                    <option value="other">Something Else</option>
-                                </select>
-                                <textarea placeholder="Tell us about your project..." rows="4" class="w-full px-4 py-3 rounded-md bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-brand-turquoise" required></textarea>
-                            </div>
-                            <button type="submit" class="btn text-brand-dark bg-brand-turquoise hover:bg-white w-full rounded-md px-8 py-3 font-semibold transition duration-300 mt-6">Book a Discovery Call</button>
-                        </form>
-                        <p class="text-sm text-gray-500 mt-6">
-                            Or email us directly at <a href="mailto:hello@2b1creative.com" class="text-brand-turquoise hover:underline">hello@2b1creative.com</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-brand-dark py-8 border-t border-gray-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://www.instagram.com/2b1creative" target="_blank" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">
-                    <span class="sr-only">Instagram</span>
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.012-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.343 2.525c.636-.247 1.363-.416 2.427-.465C9.793 2.013 10.147 2 12.315 2zm0 1.624c-2.403 0-2.748.01-3.728.058-1.024.047-1.625.207-2.078.385a3.278 3.278 0 00-1.18 1.18c-.178.453-.338 1.054-.385 2.078-.047.98-.058 1.325-.058 3.728s.01 2.748.058 3.728c.047 1.024.207 1.625.385 2.078a3.278 3.278 0 001.18 1.18c.453.178 1.054.338 2.078.385.98.047 1.325.058 3.728.058s2.748-.01 3.728-.058c1.024-.047 1.625-.207 2.078-.385a3.278 3.278 0 001.18-1.18c.178-.453.338-1.054.385-2.078.047-.98.058-1.325.058-3.728s-.01-2.748-.058-3.728c-.047-1.024-.207-1.625-.385-2.078a3.278 3.278 0 00-1.18-1.18c-.453-.178-1.054-.338-2.078-.385-.98-.047-1.325-.058-3.728-.058zM12 6.865a5.135 5.135 0 100 10.27 5.135 5.135 0 000-10.27zm0 8.649a3.514 3.514 0 110-7.028 3.514 3.514 0 010 7.028zM17.636 6.118a1.2 1.2 0 100-2.4 1.2 1.2 0 000 2.4z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/company/2b1creative/" target="_blank" class="text-gray-400 hover:text-white transition duration-150 ease-in-out">
-                    <span class="sr-only">LinkedIn</span>
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                    </svg>
-                </a>
-            </div>
-            <p class="text-gray-400">&copy; 2024 2B1 Creative. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Header scroll behavior
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 10) {
-                header.classList.add('bg-brand-dark', 'shadow-lg');
-            } else {
-                header.classList.remove('bg-brand-dark', 'shadow-lg');
-            }
-        });
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Close mobile menu when a link is clicked
-        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
-        });
-
-        // Fade-in animation on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-element');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('section > div').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Particle Animation Logic
-        const canvas = document.getElementById('hero-canvas');
-        const ctx = canvas.getContext('2d');
-        let particlesArray;
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = document.querySelector('.relative.flex.items-center.justify-center.min-h-screen').offsetHeight;
-        }
-        resizeCanvas();
-        
-        class Particle {
-            constructor(x, y, directionX, directionY, size, color) {
-                this.x = x;
-                this.y = y;
-                this.directionX = directionX;
-                this.directionY = directionY;
-                this.size = size;
-                this.color = color;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = 'rgba(0, 245, 212, 0.5)';
-                ctx.fill();
-            }
-            update() {
-                if (this.x > canvas.width || this.x < 0) {
-                    this.directionX = -this.directionX;
-                }
-                if (this.y > canvas.height || this.y < 0) {
-                    this.directionY = -this.directionY;
-                }
-                this.x += this.directionX;
-                this.y += this.directionY;
-                this.draw();
-            }
-        }
-
-        function init() {
-            particlesArray = [];
-            let numberOfParticles = (canvas.height * canvas.width) / 12000;
-            for (let i = 0; i < numberOfParticles; i++) {
-                let size = (Math.random() * 2) + 1;
-                let x = (Math.random() * ((canvas.width - size * 2) - (size * 2)) + size * 2);
-                let y = (Math.random() * ((canvas.height - size * 2) - (size * 2)) + size * 2);
-                let directionX = (Math.random() * .4) - .2;
-                let directionY = (Math.random() * .4) - .2;
-                let color = '#00f5d4';
-                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-            }
-        }
-
-        function connect() {
-            let opacityValue = 1;
-            for (let a = 0; a < particlesArray.length; a++) {
-                for (let b = a; b < particlesArray.length; b++) {
-                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x))
-                    + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                    if (distance < (canvas.width/8) * (canvas.height/8)) {
-                        opacityValue = 1 - (distance/20000);
-                        ctx.strokeStyle = `rgba(0, 245, 212, ${opacityValue})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0,0,canvas.width, canvas.height);
-
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-            }
-            connect();
-        }
-
-        window.addEventListener('resize', 
-            function() {
-                resizeCanvas();
-                init();
-            }
-        );
-        
-        init();
-        animate();
-    </script>
-</body>
-</html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="description" content="2B1 Creative is a full-service marketing agency building growth partner systems, AI automations, content, funnels, websites, and digital visibility for purpose-driven brands."/><title>2B1 Creative® | Growth Partner Program + AI Automation</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"/></head><body><div class="grain"></div><div class="progress"></div><nav class="nav"><a class="brand text-only" href="#top">2B1 Creative</a><button class="menu" aria-label="Open navigation">Menu</button><div class="links"><a href="about.html">About Us</a>
+      <a href="#machine">The Machine</a><a href="#offers">Offers</a><a href="#services">Services</a><a href="#proof">Proof</a><a href="#questionnaire" class="pill">Start</a></div></nav><header id="top" class="hero"><div class="ripped blue-rip"></div><div class="ripped gold-rip"></div><div class="ticker top-ticker"><div><span>Strategy</span><span>AI Agents</span><span>Storytelling</span><span>Automation</span><span>Funnels</span><span>Creative Direction</span><span>Growth</span><span>Strategy</span><span>AI Agents</span><span>Storytelling</span><span>Automation</span><span>Funnels</span><span>Creative Direction</span><span>Growth</span></div></div><section class="hero-stage"><div class="hero-left reveal"><p class="stamp">2B1 Creative — A Full-Service Marketing Agency</p><h1><span class="line">Good brands</span><span class="line">deserve</span><span class="line collage"><b>systems</b><em>that sell.</em></span></h1><p class="hero-text">We build full-service growth systems: strategy, content, social management, AI automation, funnels, websites, paid ads, and digital visibility for brands with purpose.</p><div class="hero-actions"><a class="button black" href="#questionnaire">Fill Out Questionnaire</a><a class="button paper" href="#proof">View Proof</a></div></div><div class="hero-orbit reveal delay-1"><div class="orbit-card main-offer"><span class="label">Primary Offer</span><h2>Growth Partner Program™</h2><p>Our most complete offer: strategy, content, production direction, social management, optimization, funnels, automation support, and growth problem-solving under one roof.</p><strong class="price-pill">Starting at $6,000/mo</strong></div><div class="mini-card m1">Content</div><div class="mini-card m2">AI</div><div class="mini-card m3">Funnels</div><div class="mini-card m4">Ads</div><div class="scribble s1">✳</div><div class="scribble s2">〰</div><div class="scribble s3">✚</div></div></section></header><main><section class="manifesto"><div class="manifesto-wrap"><p class="eyebrow tape-green reveal">The Philosophy</p><h2 class="reveal">Sometimes the solution is marketing. Sometimes it’s automation. Sometimes it’s AI. Sometimes it’s something nobody thought of yet.</h2></div></section><section id="machine" class="machine"><div class="machine-copy reveal"><p class="eyebrow tape-blue">The 2B1 Growth Machine</p><h2>We don’t sell disconnected services. We build the system.</h2><p>Most businesses do not have one problem. They have leaks. A weak offer. Slow follow-up. No retention. Pretty content with no funnel. A website that does not convert. We connect the moving parts.</p></div><div class="machine-map reveal delay-1"><div class="node n1"><strong>Attention</strong><span>content + ads</span></div><div class="node n2"><strong>Trust</strong><span>stories + proof</span></div><div class="node n3"><strong>Conversion</strong><span>AI + funnels</span></div><div class="node n4"><strong>Retention</strong><span>email + CRM</span></div><div class="node center"><strong>Growth</strong><span>optimized weekly</span></div></div></section><section class="numbers"><div class="num reveal"><b><span class="counter" data-target="30000">0</span>+</b><p>followers generated organically in 2 months</p></div><div class="num reveal delay-1"><b>$<span class="counter" data-target="19436">0</span></b><p>single month launch revenue on $3k ad spend</p></div><div class="num reveal delay-2"><b><span class="counter" data-target="32000">0</span>+</b><p>unique visits in one day from email</p></div><div class="num reveal delay-3"><b><span class="counter" data-target="305">0</span>%</b><p>organic engagement spike in under 2 weeks</p></div></section><section id="offers" class="offers"><div class="section-head reveal"><p class="eyebrow tape-pink">Core Offers</p><h2>Primary: full growth partnership. Secondary: AI automation that stops lead leaks.</h2></div><div class="offer-layout"><article class="offer-panel primary-offer reveal offer-link" data-service-jump="growth" tabindex="0"><span class="label">Primary Offer</span><h3>Growth Partner Program™</h3><p>For brands that want a creative growth partner, not a random vendor. This includes strategy, content planning, production support, posting, management, reporting, optimization, and creative problem solving across the business.</p><strong>Starting at $6,000/mo</strong></article><article class="offer-panel reveal delay-1 offer-link" data-service-jump="ai" tabindex="0"><span class="label alt">Secondary Offer</span><h3>AI Agent Automation</h3><p>Custom AI agents for customer service, DM/comment automation, lead qualification, sales conversations when applicable, routing, workflows, and follow-up systems.</p><strong>Starting at $1,500</strong></article></div></section><section id="services" class="services"><div class="section-head reveal"><p class="eyebrow tape-yellow">Services</p><h2>Pick the door. We’ll build the room behind it.</h2></div><div class="service-showcase"><div class="service-tabs reveal"><button data-tab="growth" class="active">Growth Partner Program™</button><button data-tab="ai">AI Automation + Agents</button><button data-tab="content">Content + Ad Creation</button><button data-tab="strategy">Strategy + Planning</button><button data-tab="social">Social Management</button><button data-tab="visibility">Digital Visibility</button><button data-tab="funnels">Email, SMS + Funnels</button><button data-tab="web">Websites, Apps + CRM</button><button data-tab="ads">Paid Ads Management</button><button data-tab="audit">Full Brand Audit</button></div><div class="service-display reveal delay-1" id="serviceDisplay"></div></div></section><section id="proof" class="proof"><div class="section-head reveal"><p class="eyebrow tape-green">Receipts</p><h2>Anonymous case studies. Very non-anonymous results.</h2></div><div class="case-stack"><article class="case reveal">
+          <div class="case-index">01</div>
+          <div>
+            <h3>From ad-drain to cult following.</h3>
+            <p><b>The Problem:</b> The brand, an athletic apparel brand, was relying on paid ads that weren't producing sustainable results.</p>
+            <p><b>The Play:</b> We shifted the focus from chasing cold traffic to building a system centered around community, retention, email marketing, customer feedback, and organic content that had already proven itself.</p>
+            <p><b>The Proof:</b> +30,000 followers in 60 days. Website traffic grew from thousands per month to thousands per week. $3,000 in ad spend generated $19,436 in revenue. 40% of sales came from returning customers by month five.</p>
+            <p><b>The Result:</b> A more profitable brand that relied less on constant ad spend and more on customer loyalty.</p>
+            <div class="metrics"><span>30k followers</span><span>$19,436 revenue</span><span>40% returning customers</span><span>60 days</span></div>
+          </div>
+        </article><article class="case reveal"><div class="case-index">02</div><div><h3>From solo operator to 6-person fleet.</h3><p><b>The Problem:</b> A local landscaping owner relied almost entirely on word-of-mouth referrals. He wanted to scale, but without predictable leads, hiring a crew felt too risky.</p><p><b>The Play:</b> We built a hyper-local visibility engine: website optimization, AI chat agent, lead qualification, scheduling support, customer testimonial recovery, a free-service giveaway campaign, localized content, local ads, and Google Maps optimization.</p><p><b>The Proof:</b> Consistent lead flow helped him hire his first full-time employee within 60 days. By Month 8, he purchased a second truck and hired again. By Month 15, he moved out of manual labor into a managerial role with 6 full-time employees and multiple trucks running daily.</p><div class="metrics"><span>First hire in 60 days</span><span>Second truck</span><span>6 employees</span><span>Owner moved into management</span></div></div></article><article class="case reveal">
+          <div class="case-index">03</div>
+          <div>
+            <h3>Pretty content finally got strategy.</h3>
+            <p><b>The Problem:</b> A boutique restaurant had professional footage, but the videos were not performing. The visuals looked good, but there was no hook strategy, story, or reason for local viewers to care.</p>
+            <p><b>The Play:</b> We built a 30-day content system focused on stronger hooks, better storytelling, creative direction, and content designed specifically for the local audience.</p>
+            <p><b>The Proof:</b> Organic engagement increased by over 300% in less than two weeks. By Day 13, the owners reported a surge in foot traffic and one of their busiest dining periods since launching the campaign.</p>
+            <div class="metrics"><span>300%+ engagement</span><span>Less than 2 weeks</span><span>Day 13 foot traffic surge</span></div>
+          </div>
+        </article><article class="case reveal">
+          <div class="case-index">04</div>
+          <div>
+            <h3>A dead list became a traffic flood.</h3>
+            <p><b>The Problem:</b> An established ecommerce brand had built an email list of more than 83,000 subscribers, but engagement was declining. Promotional email blasts were generating fewer results, unsubscribe rates were increasing, and a valuable audience was becoming less responsive with every campaign.</p>
+            <p><b>The Play:</b> Instead of sending more sales emails, we rebuilt the customer experience around storytelling, value, conversation, and anticipation. We introduced more human copy, creative conversion-focused visuals, and a strategic one-week launch sequence designed to build excitement before the promotion ever went live.</p>
+            <p><b>The Proof:</b> On launch day, the website received more than 32,000 unique visitors, with analytics showing that 65% of all traffic came directly from the email campaign. The launch generated $388,213 in sales, transforming an underperforming email list into the primary driver of traffic, engagement, and revenue.</p>
+            <div class="metrics"><span>83k+ subscribers</span><span>32k+ visitors</span><span>65% from email</span><span>$388,213 sales</span></div>
+          </div>
+        </article></div></section><section class="receipts"><div class="section-head reveal"><p class="eyebrow tape-blue">Client Love</p><h2>A few receipts from the growth lab.</h2></div><div class="receipt-grid client-proof-grid">
+        <figure class="receipt proof-img reveal">
+          <img src="assets/client-text-proof.png" alt="Client text reaction celebrating sales results">
+          <figcaption>Client sales reaction</figcaption>
+        </figure>
+        <figure class="receipt proof-img tall reveal delay-1">
+          <img src="assets/views-60-days-proof.png" alt="Instagram analytics showing 888,495 views in 60 days">
+          <figcaption>888k+ views in 60 days</figcaption>
+        </figure>
+        <figure class="receipt proof-img reveal delay-2">
+          <img src="assets/views-14-days-proof.png" alt="Instagram analytics showing 175,420 views in 14 days">
+          <figcaption>175k+ views in 14 days</figcaption>
+        </figure>
+        <figure class="receipt proof-img reveal delay-3">
+          <img src="assets/analytics-growth-proof.png" alt="Analytics showing 1M views and 61,119 engagement">
+          <figcaption>1M views / 61k engagement</figcaption>
+        </figure>
+        <figure class="receipt proof-img wide reveal delay-2">
+          <img src="assets/marketing-dashboard-proof.png" alt="Marketing dashboard with revenue, leads, traffic, email, and content performance">
+          <figcaption>Campaign dashboard snapshot</figcaption>
+        </figure>
+      </div>
+    </section><section class="scorecard"><div class="score-copy reveal"><p class="eyebrow tape-pink">Free Growth Scorecard</p><h2>How many leads are slipping through the cracks?</h2><p>Check what your business already has in place. The score updates instantly.</p></div><div class="score-box reveal delay-1"><div class="dial"><span id="score">0</span><small>/100</small></div><label><input class="check" type="checkbox"> Leads get answered within 5 minutes.</label><label><input class="check" type="checkbox"> We have automated follow-up.</label><label><input class="check" type="checkbox"> Reviews are collected and used consistently.</label><label><input class="check" type="checkbox"> Our website clearly converts traffic.</label><label><input class="check" type="checkbox"> Email/SMS brings customers back.</label><a href="#questionnaire" class="button black full">Help Me Fix The Leaks</a></div></section><section id="questionnaire" class="questionnaire"><div class="section-head reveal"><p class="eyebrow tape-yellow">Start Here</p><h2>Tell us what you’re building. We’ll find the next best move.</h2><p>This form is ready for Netlify Forms. Once the site is deployed on Netlify, submissions will appear inside your Netlify dashboard and can be forwarded to your business email through Form Notifications.</p></div><form id="leadForm" class="lead-form reveal" name="lead-questionnaire" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html"><input type="hidden" name="form-name" value="lead-questionnaire">
+        <p class="hidden-field"><label>Don’t fill this out if you’re human: <input name="bot-field"></label></p>
+        <div class="form-grid"><label>Name<input name="name" required placeholder="Your name"></label><label>Email<input name="email" required type="email" placeholder="you@email.com"></label><label>Business Name<input name="business" placeholder="Brand / business"></label><label>Website or Instagram<input name="website" placeholder="Link"></label></div><label>What do you need most?<select name="need"><option>Growth Partner Program™</option><option>AI agent for customer service and sales</option><option>Content creation</option><option>Social media management</option><option>Email, SMS marketing / funnels</option><option>Website / app / CRM</option><option>Paid ads management</option><option>Full brand audit</option></select></label><label>Monthly budget range<select name="budget"><option>$500 - $1,500</option><option>$1,500 - $3,000</option><option>$3,000 - $6,000</option><option>$6,000 - $10,000</option><option>$10,000+</option><option>Not sure yet</option></select></label><label>What’s going on in the business right now?<textarea name="message" rows="7" placeholder="Goals, problems, current tools, current marketing, dream outcome..."></textarea></label><button class="button black full" type="submit">Send Questionnaire</button></form></section></main><footer class="footer"><div><strong>2B1 Creative</strong><p>Think Outside The Box.</p></div><a href="https://www.instagram.com/2b1creative.com" target="_blank" rel="noopener">Instagram</a></footer><script src="js/main.js"></script></body></html>
