@@ -299,3 +299,31 @@
 .connected-message p,
 .creativity-wrap p,
 .mission-story p{ letter-spacing:.005em; }
+/* Mobile sticky case study fix */
+@media (max-width: 800px) {
+  .case-stack {
+    gap: 42px;
+  }
+
+  .case {
+    position: sticky !important;
+    top: 92px !important;
+    margin-bottom: 70px;
+  }
+
+  .case:nth-child(2) {
+    top: 104px !important;
+  }
+
+  .case:nth-child(3) {
+    top: 116px !important;
+  }
+
+  .case:nth-child(4) {
+    top: 128px !important;
+  }
+
+  .case:last-child {
+    margin-bottom: 0;
+  }
+}
