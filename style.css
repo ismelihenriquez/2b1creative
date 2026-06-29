@@ -350,3 +350,21 @@
     margin-bottom: 0;
   }
 }
+/* Mobile sticky case study fix */
+@media (max-width: 800px) {
+  .case-stack {
+    gap: 0 !important;
+  }
+
+  .case {
+    position: sticky !important;
+    top: 92px !important;
+    margin-bottom: var(--mobile-case-space, 160px) !important;
+  }
+
+  .case:nth-child(2),
+  .case:nth-child(3),
+  .case:nth-child(4) {
+    top: 92px !important;
+  }
+}
