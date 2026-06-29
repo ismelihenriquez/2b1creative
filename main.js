@@ -179,3 +179,23 @@ window.addEventListener("scroll",()=>{
   const progress = $(".progress");
   if(progress) progress.style.width = pct + "%";
 });
+function setMobileCaseSpacing() {
+  const isMobile = window.innerWidth <= 800;
+  const cases = document.querySelectorAll(".case");
+
+  cases.forEach((card) => {
+    if (!isMobile) {
+      card.style.removeProperty("--mobile-case-space");
+      return;
+    }
+
+    const viewportSpace = window.innerHeight - 120;
+    const cardHeight = card.scrollHeight;
+    const extraSpace = Math.max(180, cardHeight - viewportSpace + 220);
+
+    card.style.setProperty("--mobile-case-space", `${extraSpace}px`);
+  });
+}
+
+window.addEventListener("load", setMobileCaseSpacing);
+window.addEventListener("resize", setMobileCaseSpacing);
