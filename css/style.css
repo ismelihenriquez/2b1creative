@@ -327,3 +327,26 @@
     margin-bottom: 0;
   }
 }
+/* Mobile sticky case cards: keep effect, but allow tall cards to be read */
+@media (max-width: 800px) {
+  .case {
+    position: sticky !important;
+    top: 88px !important;
+
+    max-height: calc(100vh - 115px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    margin-bottom: 44px;
+  }
+
+  .case:nth-child(2),
+  .case:nth-child(3),
+  .case:nth-child(4) {
+    top: 88px !important;
+  }
+
+  .case:last-child {
+    margin-bottom: 0;
+  }
+}
